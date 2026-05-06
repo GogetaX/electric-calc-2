@@ -48,3 +48,44 @@ func GetData(tab_btn:String)->Dictionary:
 		_:
 			print_debug("Unknown Tab: ",tab_btn)
 	return home_pay_data[0]
+
+func CalculateDevition(cur_div:String,cur_type:String,need_to_pay:float,from_date:Dictionary,to_date:Dictionary,div_data :Dictionary)->float:
+	var to_pay = need_to_pay
+	match cur_div:
+		"NO_DIVISION":
+			return need_to_pay
+		"DIV_PART":
+			match cur_type:
+				"HOUSE":
+					var part_div_value = int(div_data["division_part_price"])
+					return need_to_pay/ part_div_value
+				"DEFAULT":
+					var part_div_value = int(div_data["division_part_price"])
+					return need_to_pay/ part_div_value
+				"CUSTOM":
+					var part_div_value = int(div_data["division_part_price"])
+					return need_to_pay/ part_div_value
+				_:
+					print_debug("Unnown Type: ",cur_type)
+		"PERCENT":
+			match cur_type:
+				"HOUSE":
+					var percent_div_value = float(div_data["division_percent"])
+					return need_to_pay * (percent_div_value/100.0)
+				"DEFAULT":
+					var percent_div_value = float(div_data["division_percent"])
+					return need_to_pay * (percent_div_value/100.0)
+				"CUSTOM":
+					var percent_div_value = float(div_data["division_percent"])
+					return need_to_pay * (percent_div_value/100.0)
+		"CUSTOM":
+			match cur_type:
+				"HOUSE":
+					return Global.calculate_payment_by_days(float(div_data["division_custom_price"]),from_date,to_date)
+				"DEFAULT":
+					return Global.calculate_payment_by_days(float(div_data["division_custom_price"]),from_date,to_date)
+				"CUSTOM":
+					return Global.calculate_payment_by_days(float(div_data["division_custom_price"]),from_date,to_date)
+		_:
+			print_debug("Unknown div: ",cur_div)
+	return to_pay

@@ -1,6 +1,8 @@
 @tool
 extends Panel
 
+signal ValueSubmited(value:float)
+
 @export_enum("CURRENT","LAST_TIME") var tab_type := "CURRENT":
 	set(value):
 		tab_type = value
@@ -38,3 +40,10 @@ func _on_line_edit_focus_exited() -> void:
 		var t = create_tween()
 		t.tween_property($SelectedPanel,"self_modulate:a",0.0,0.1)
 		t.finished.connect(func():$SelectedPanel.visible = false)
+
+
+func _on_line_edit_format_value_submited(value: String) -> void:
+	ValueSubmited.emit(float(value))
+	
+func GetValue():
+	return float($VList/LineEdit.text)

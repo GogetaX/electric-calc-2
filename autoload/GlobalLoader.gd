@@ -4,7 +4,7 @@ const OLD_SETTING_DATA = "user://Settings.ini"
 
 const NEW_SAVE_DATA = "user://db_v2.ini"
 
-const DEFAULT_DIVITION_SETTINGS = {"with_maam":true,"division_data":{"type":"NO_DIVISION"},"phase_type":"ONE_PHASE_2_MONTH"}
+const DEFAULT_DIVITION_SETTINGS = {"with_maam":true,"division_data":{"type":"NO_DIVISION","PART_DIV_VALUE":3,"PERCENT_VALUE":25,"CUSTOM_PRICE":50},"phase_type":"2_month_base_1_phase"}
 
 var save_data = {}
 
@@ -62,9 +62,9 @@ func CreateEmptyData():
 	var res = {}
 	res["history"] = []
 	res["cur_selected"] = "HOUSE"
-	res["house_settings"] = DEFAULT_DIVITION_SETTINGS.duplicate()
-	res["default_settings"] = DEFAULT_DIVITION_SETTINGS.duplicate()
-	res["custom_settings"] = DEFAULT_DIVITION_SETTINGS.duplicate()
+	res["house_settings"] = DEFAULT_DIVITION_SETTINGS.duplicate(true)
+	res["default_settings"] = DEFAULT_DIVITION_SETTINGS.duplicate(true)
+	res["custom_settings"] = DEFAULT_DIVITION_SETTINGS.duplicate(true)
 	
 	return res
 
@@ -80,3 +80,46 @@ func SetCurTab(tab_name:String):
 	
 func SyncSave():
 	print_debug("TODO: Save to file: ",NEW_SAVE_DATA)
+
+func get_closest_last_date_item(items: Array) -> Dictionary:
+	if save_data.history.is_empty():
+		return Time.get_date_dict_from_system()
+
+	var today := Time.get_date_dict_from_system()
+	var today_unix := Time.get_unix_time_from_datetime_dict({
+		"year": today.year,
+		"month": today.month,
+		"day": today.day,
+		"hour": 0,
+		"minute": 0,
+		"second": 0
+	})
+
+	var closest_item: Dictionary = {}
+	var closest_diff := INF
+
+	for item in items:
+		if not item.has("last_date"):
+			continue
+
+		var d: Dictionary = item.last_date
+
+		if not d.has("year") or not d.has("month") or not d.has("day"):
+			continue
+
+		var date_unix := Time.get_unix_time_from_datetime_dict({
+			"year": int(d.year),
+			"month": int(d.month),
+			"day": int(d.day),
+			"hour": 0,
+			"minute": 0,
+			"second": 0
+		})
+
+		var diff = abs(today_unix - date_unix)
+
+		if diff < closest_diff:
+			closest_diff = diff
+			closest_item = item
+
+	return closest_item

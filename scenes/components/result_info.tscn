@@ -61,6 +61,8 @@ mouse_filter = 2
 [node name="PanelWithIcon" parent="VList/HList/VBoxContainer" unique_id=29907083 instance=ExtResource("4_paehj")]
 layout_mode = 2
 icon = ExtResource("3_24nkp")
+as_button = false
+hide_bg = false
 
 [node name="result_bar" type="Panel" parent="VList" unique_id=1933987296]
 custom_minimum_size = Vector2(0, 70)
@@ -82,7 +84,7 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="custom_label" parent="VList/result_bar/HList" unique_id=77184699 instance=ExtResource("1_paehj")]
+[node name="formula" parent="VList/result_bar/HList" unique_id=77184699 instance=ExtResource("1_paehj")]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
 theme_override_fonts/font = ExtResource("2_2l530")
@@ -91,7 +93,7 @@ text = "800 - 300 ="
 label_color = "NEUTRAL"
 label_size = "NORMAL"
 
-[node name="custom_label2" parent="VList/result_bar/HList" unique_id=1137311958 instance=ExtResource("1_paehj")]
+[node name="tot_kw" parent="VList/result_bar/HList" unique_id=1137311958 instance=ExtResource("1_paehj")]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
 theme_override_font_sizes/font_size = 24

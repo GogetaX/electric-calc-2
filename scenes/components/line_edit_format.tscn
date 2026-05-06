@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bshccbgbbqxry"]
+
+[ext_resource type="Script" uid="uid://dnmfkn8yjna8l" path="res://scenes/components/line_edit_format.gd" id="1_xa6xv"]
+
+[node name="line_edit_format" type="Node" unique_id=59898076]
+script = ExtResource("1_xa6xv")

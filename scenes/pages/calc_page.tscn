@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://dga8tcjboqsjh" path="res://scenes/components/how_much_pay.tscn" id="1_i4ur7"]
 [ext_resource type="Script" uid="uid://cwk23eew7ndhc" path="res://scenes/pages/calc_page.gd" id="1_lwkig"]
 [ext_resource type="PackedScene" uid="uid://dpo4uh8d320n0" path="res://scenes/components/counter_input.tscn" id="2_ceqyl"]
-[ext_resource type="Texture2D" uid="uid://caj5x3loidep1" path="res://assets/icons/arrow_left.png" id="3_ceqyl"]
 [ext_resource type="PackedScene" uid="uid://blbokm0fg2rtu" path="res://scenes/components/result_info.tscn" id="3_lwkig"]
+[ext_resource type="Texture2D" uid="uid://cvm5stn1qki5" path="res://assets/icons/arrow_right.png" id="4_lwkig"]
 [ext_resource type="PackedScene" uid="uid://dh864icn07y43" path="res://scenes/components/custom_label.tscn" id="4_rcgvo"]
 [ext_resource type="FontFile" uid="uid://dg65kpdsjo02k" path="res://assets/fonts/NotoSansHebrew-Regular.ttf" id="5_eoxoe"]
 [ext_resource type="PackedScene" uid="uid://dxjsjhahauyqe" path="res://scenes/components/taarif_item.tscn" id="6_oiem5"]
@@ -43,8 +43,9 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 20
 
-[node name="CounterInput" parent="HList" unique_id=638524408 instance=ExtResource("2_ceqyl")]
+[node name="OldKW" parent="HList" unique_id=2053734426 instance=ExtResource("2_ceqyl")]
 layout_mode = 2
+tab_type = "LAST_TIME"
 
 [node name="Control" type="Control" parent="HList" unique_id=1666997848]
 layout_mode = 2
@@ -73,20 +74,19 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = -10.0
-offset_bottom = -10.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("3_ceqyl")
-expand_mode = 2
+texture = ExtResource("4_lwkig")
+expand_mode = 1
 stretch_mode = 5
 
-[node name="CounterInput2" parent="HList" unique_id=2053734426 instance=ExtResource("2_ceqyl")]
+[node name="NewKW" parent="HList" unique_id=638524408 instance=ExtResource("2_ceqyl")]
 layout_mode = 2
-tab_type = "LAST_TIME"
 
 [node name="ResultInfo" parent="." unique_id=2136359308 instance=ExtResource("3_lwkig")]
 layout_mode = 2
@@ -150,6 +150,36 @@ with_selector = true
 layout_mode = 2
 title = "מחיר לקוט״ש"
 
+[node name="DefaultTab" type="HBoxContainer" parent="." unique_id=1679735816]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="Kavua" parent="DefaultTab" unique_id=104498213 instance=ExtResource("7_1i3ub")]
+layout_mode = 2
+value_str = "₪0.00"
+with_selector = true
+
+[node name="KotashPrice" parent="DefaultTab" unique_id=732773021 instance=ExtResource("7_1i3ub")]
+layout_mode = 2
+title = "מחיר לקוט״ש"
+
+[node name="CustomTab" type="HBoxContainer" parent="." unique_id=819062546]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="Kavua" parent="CustomTab" unique_id=1222257083 instance=ExtResource("7_1i3ub")]
+layout_mode = 2
+value_str = "₪0.00"
+with_selector = true
+
+[node name="KotashPrice" parent="CustomTab" unique_id=1108179935 instance=ExtResource("7_1i3ub")]
+layout_mode = 2
+title = "מחיר לקוט״ש"
+
 [node name="CalcBtn" parent="." unique_id=1626528086 instance=ExtResource("8_bvqmj")]
 layout_mode = 2
 
@@ -189,7 +219,11 @@ layout_mode = 2
 [node name="HistoryItem" parent="HistoryList" unique_id=1802322898 instance=ExtResource("12_lwkig")]
 layout_mode = 2
 
+[connection signal="ValueSubmited" from="HList/OldKW" to="." method="_on_old_kw_value_submited"]
+[connection signal="ValueSubmited" from="HList/NewKW" to="." method="_on_new_kw_value_submited"]
 [connection signal="OnPress" from="TaarifSelector/CustomTab" to="." method="_on_custom_tab_on_press"]
 [connection signal="OnPress" from="TaarifSelector/DefaultTab" to="." method="_on_default_tab_on_press"]
 [connection signal="OnPress" from="TaarifSelector/HomeTab" to="." method="_on_home_tab_on_press"]
 [connection signal="SettingPressed" from="HouseTab/Kavua" to="." method="_on_kavua_setting_pressed"]
+[connection signal="SettingPressed" from="DefaultTab/Kavua" to="." method="_on_kavua_setting_pressed"]
+[connection signal="SettingPressed" from="CustomTab/Kavua" to="." method="_on_kavua_setting_pressed"]

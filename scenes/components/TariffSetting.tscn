@@ -57,13 +57,3 @@ layout_mode = 2
 icon = ExtResource("5_5wvfh")
 as_button = true
 hide_bg = true
-
-[node name="type" parent="VList" unique_id=768891875 instance=ExtResource("1_vukyh")]
-visible = false
-layout_mode = 2
-theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
-theme_override_font_sizes/font_size = 24
-text = "לקוח דו חדשי - מונה בסיס חד פאזי"
-horizontal_alignment = 0
-label_color = "PRIMARY"
-label_size = "NORMAL_BOLD"

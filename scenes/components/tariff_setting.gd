@@ -32,11 +32,11 @@ var _already_inited = false
 func _ready() -> void:
 	$VList/title_label.text = title
 	$VList/HBoxContainer/value.text = value_str
-	$VList/type.visible = with_selector
 	$VList/HBoxContainer/TypeSelectorBtn.visible = with_selector
 	if !Engine.is_editor_hint() && !_already_inited:
 		_already_inited = true
 		$VList/HBoxContainer/TypeSelectorBtn.OnPress.connect(OnSettingPressed)
 
+	
 func OnSettingPressed():
 	SettingPressed.emit()

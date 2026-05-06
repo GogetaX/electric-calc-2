@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bv8l0f2qid3sh" path="res://scenes/components/counter_input.gd" id="1_in3ek"]
 [ext_resource type="FontFile" uid="uid://dg65kpdsjo02k" path="res://assets/fonts/NotoSansHebrew-Regular.ttf" id="2_in3ek"]
 [ext_resource type="FontFile" uid="uid://ly7r2wil7wut" path="res://assets/fonts/NotoSansHebrew-Bold.ttf" id="3_7dofb"]
+[ext_resource type="PackedScene" uid="uid://bshccbgbbqxry" path="res://scenes/components/line_edit_format.tscn" id="5_7dofb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_in3ek"]
 bg_color = Color(0.101960786, 0.12941177, 0.11372549, 1)
@@ -70,6 +71,10 @@ theme_override_font_sizes/font_size = 48
 text = "800"
 virtual_keyboard_type = 3
 
+[node name="line_edit_format" parent="VList/LineEdit" unique_id=59898076 instance=ExtResource("5_7dofb")]
+decimal_max_value = 999999.0
+nums_after_dot = 2
+
 [node name="hint" parent="VList" unique_id=428504736 instance=ExtResource("1_bdslh")]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
@@ -92,3 +97,4 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_bdslh")
 
 [connection signal="focus_entered" from="VList/LineEdit" to="." method="_on_line_edit_focus_entered"]
 [connection signal="focus_exited" from="VList/LineEdit" to="." method="_on_line_edit_focus_exited"]
+[connection signal="ValueSubmited" from="VList/LineEdit/line_edit_format" to="." method="_on_line_edit_format_value_submited"]
