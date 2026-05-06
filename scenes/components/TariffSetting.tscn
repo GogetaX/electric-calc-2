@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://c8kwmgnu7rrfm"]
+
+[ext_resource type="Script" uid="uid://dak4u8itoqwe4" path="res://scenes/components/tariff_setting.gd" id="1_vtrle"]
+[ext_resource type="PackedScene" uid="uid://dh864icn07y43" path="res://scenes/components/custom_label.tscn" id="1_vukyh"]
+[ext_resource type="FontFile" uid="uid://dg65kpdsjo02k" path="res://assets/fonts/NotoSansHebrew-Regular.ttf" id="2_vtrle"]
+[ext_resource type="PackedScene" uid="uid://cifw75w5hoqp2" path="res://scenes/components/panel_with_icon.tscn" id="4_axugx"]
+[ext_resource type="Texture2D" uid="uid://cqgcgsxrbin1l" path="res://assets/icons/setting_icon.png" id="5_5wvfh"]
+
+[node name="Panel" type="Panel" unique_id=96954626]
+custom_minimum_size = Vector2(50, 50)
+offset_right = 581.0
+offset_bottom = 155.0
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_type_variation = &"PanelUnder"
+script = ExtResource("1_vtrle")
+
+[node name="VList" type="VBoxContainer" parent="." unique_id=539940786]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="title_label" parent="VList" unique_id=779062733 instance=ExtResource("1_vukyh")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("2_vtrle")
+theme_override_font_sizes/font_size = 24
+text = "תשלום קבוע"
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VList" unique_id=1388467701]
+layout_mode = 2
+
+[node name="value" parent="VList/HBoxContainer" unique_id=1538308929 instance=ExtResource("1_vukyh")]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+text = "₪0.6432"
+horizontal_alignment = 0
+label_color = "WHITE"
+label_size = "INPUT_BOLD"
+
+[node name="TypeSelectorBtn" parent="VList/HBoxContainer" unique_id=1539567322 instance=ExtResource("4_axugx")]
+visible = false
+layout_mode = 2
+icon = ExtResource("5_5wvfh")
+as_button = true
+hide_bg = true
+
+[node name="type" parent="VList" unique_id=768891875 instance=ExtResource("1_vukyh")]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+theme_override_font_sizes/font_size = 24
+text = "לקוח דו חדשי - מונה בסיס חד פאזי"
+horizontal_alignment = 0
+label_color = "PRIMARY"
+label_size = "NORMAL_BOLD"

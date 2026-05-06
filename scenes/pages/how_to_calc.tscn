@@ -1,0 +1,290 @@
+[gd_scene format=3 uid="uid://drql0g6sc7g6s"]
+
+[ext_resource type="PackedScene" uid="uid://dh864icn07y43" path="res://scenes/components/custom_label.tscn" id="1_rajw6"]
+[ext_resource type="Script" uid="uid://bivy84xycbibm" path="res://scenes/pages/how_to_calc.gd" id="1_sx07n"]
+[ext_resource type="FontFile" uid="uid://dg65kpdsjo02k" path="res://assets/fonts/NotoSansHebrew-Regular.ttf" id="2_owh4r"]
+[ext_resource type="Texture2D" uid="uid://ffrue0eacuat" path="res://assets/icons/info_icon.png" id="3_awygx"]
+[ext_resource type="Texture2D" uid="uid://y2p23a84uu67" path="res://assets/icons/Num.png" id="5_0h4nf"]
+[ext_resource type="Texture2D" uid="uid://dmekt1aju5rga" path="res://assets/icons/Num2.png" id="6_54oib"]
+
+[node name="HowToCalc" type="VBoxContainer" unique_id=431418885]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+script = ExtResource("1_sx07n")
+
+[node name="custom_label" parent="." unique_id=779062733 instance=ExtResource("1_rajw6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+text = "איך להשתמש בתוכנה?"
+label_color = "WHITE"
+label_size = "INPUT_BOLD"
+
+[node name="Panel" type="Panel" parent="." unique_id=413339229]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="VList" type="VBoxContainer" parent="Panel" unique_id=1826624347]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="custom_label" parent="Panel/VList" unique_id=399182168 instance=ExtResource("1_rajw6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("2_owh4r")
+theme_override_font_sizes/font_size = 24
+text = "יש למלא את המונה של החודש הקודם (שנמצא בהיסטוריה של האפליקציה) והחודש הנוכחי. לאחר מכן ללחוץ \"חשב\"."
+autowrap_mode = 2
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="Panel" type="Panel" parent="Panel/VList" unique_id=1580473437]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_type_variation = &"PanelUnder"
+
+[node name="HList" type="HBoxContainer" parent="Panel/VList/Panel" unique_id=1220509862]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="custom_label" parent="Panel/VList/Panel/HList" unique_id=1328420146 instance=ExtResource("1_rajw6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+theme_override_font_sizes/font_size = 24
+text = "חישוב בתוכנה יהיה כולל מע\"מ"
+label_color = "PRIMARY"
+label_size = "NORMAL_BOLD"
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VList/Panel/HList" unique_id=1342644801]
+self_modulate = Color(0.0627451, 0.7137255, 0.49803922, 1)
+layout_mode = 2
+texture = ExtResource("3_awygx")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="custom_label2" parent="." unique_id=1609866939 instance=ExtResource("1_rajw6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+text = "שעוני חשמל"
+label_color = "WHITE"
+label_size = "INPUT_BOLD"
+
+[node name="Example1" type="Panel" parent="." unique_id=26560303]
+custom_minimum_size = Vector2(0, 280)
+layout_mode = 2
+
+[node name="HList" type="HBoxContainer" parent="Example1" unique_id=1795130976]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Example1/HList" unique_id=424702293]
+layout_mode = 2
+texture = ExtResource("5_0h4nf")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="VList" type="VBoxContainer" parent="Example1/HList" unique_id=8863281]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="custom_label2" parent="Example1/HList/VList" unique_id=437055783 instance=ExtResource("1_rajw6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_owh4r")
+theme_override_font_sizes/font_size = 32
+text = "שעון דוגמא #1"
+label_color = "WHITE"
+label_size = "NORMAL_TITLE"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Example1/HList/VList" unique_id=218362535]
+layout_mode = 2
+alignment = 2
+
+[node name="custom_label3" parent="Example1/HList/VList/HBoxContainer" unique_id=1989112937 instance=ExtResource("1_rajw6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "135235.0"
+label_color = "WHITE"
+
+[node name="Panel" type="Panel" parent="Example1/HList/VList/HBoxContainer/custom_label3" unique_id=1029683201]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_right = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"PanelUnder"
+
+[node name="custom_label4" parent="Example1/HList/VList/HBoxContainer" unique_id=1614791491 instance=ExtResource("1_rajw6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_font_sizes/font_size = 24
+text = "תוצאה: "
+label_color = "NEUTRAL"
+label_size = "NORMAL_BOLD"
+
+[node name="Control" type="Control" parent="Example1/HList/VList" unique_id=1143646937]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="Example1/HList/VList" unique_id=1490002591]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_type_variation = &"PanelUnder"
+
+[node name="HList" type="HBoxContainer" parent="Example1/HList/VList/Panel" unique_id=558685586]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="custom_label" parent="Example1/HList/VList/Panel/HList" unique_id=2138423800 instance=ExtResource("1_rajw6")]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+theme_override_font_sizes/font_size = 24
+text = "הספרות שאחרי הנקודה אינן חובה"
+autowrap_mode = 2
+label_color = "PRIMARY"
+label_size = "NORMAL_BOLD"
+
+[node name="Example2" type="Panel" parent="." unique_id=2126799299]
+custom_minimum_size = Vector2(0, 280)
+layout_mode = 2
+
+[node name="HList" type="HBoxContainer" parent="Example2" unique_id=1690990449]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Example2/HList" unique_id=396307817]
+layout_mode = 2
+texture = ExtResource("6_54oib")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="VList" type="VBoxContainer" parent="Example2/HList" unique_id=891801140]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="custom_label2" parent="Example2/HList/VList" unique_id=295432467 instance=ExtResource("1_rajw6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_owh4r")
+theme_override_font_sizes/font_size = 32
+text = "שעון דוגמא #2"
+label_color = "WHITE"
+label_size = "NORMAL_TITLE"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Example2/HList/VList" unique_id=1059022788]
+layout_mode = 2
+alignment = 2
+
+[node name="custom_label3" parent="Example2/HList/VList/HBoxContainer" unique_id=426390019 instance=ExtResource("1_rajw6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "41924.97"
+label_color = "WHITE"
+
+[node name="Panel" type="Panel" parent="Example2/HList/VList/HBoxContainer/custom_label3" unique_id=972296380]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_right = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"PanelUnder"
+
+[node name="custom_label4" parent="Example2/HList/VList/HBoxContainer" unique_id=1271696046 instance=ExtResource("1_rajw6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_font_sizes/font_size = 24
+text = "תוצאה: "
+label_color = "NEUTRAL"
+label_size = "NORMAL_BOLD"
+
+[node name="Control" type="Control" parent="Example2/HList/VList" unique_id=1556266251]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="Example2/HList/VList" unique_id=1497724818]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_type_variation = &"PanelUnder"
+
+[node name="HList" type="HBoxContainer" parent="Example2/HList/VList/Panel" unique_id=1209016915]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="custom_label" parent="Example2/HList/VList/Panel/HList" unique_id=2039040450 instance=ExtResource("1_rajw6")]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+theme_override_font_sizes/font_size = 24
+text = "הספרות שאחרי הנקודה אינן חובה"
+autowrap_mode = 2
+label_color = "PRIMARY"
+label_size = "NORMAL_BOLD"
+
+[connection signal="resized" from="Panel/VList" to="." method="_on_v_list_resized"]

@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bsq8ms3fdamp4"]
+
+[ext_resource type="Texture2D" uid="uid://ffrue0eacuat" path="res://assets/icons/info_icon.png" id="1_qly2u"]
+[ext_resource type="Script" uid="uid://ci4nkmx7bm1kg" path="res://scenes/components/bottom_tab_btn.gd" id="1_r0cib"]
+[ext_resource type="PackedScene" uid="uid://dh864icn07y43" path="res://scenes/components/custom_label.tscn" id="2_r0cib"]
+[ext_resource type="FontFile" uid="uid://dg65kpdsjo02k" path="res://assets/fonts/NotoSansHebrew-Regular.ttf" id="3_mafjr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qups4"]
+bg_color = Color(0.06666667, 0.16078432, 0.1882353, 1)
+border_color = Color(0.15686275, 0.2627451, 0.21568628, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="BottomTabBtn" type="Control" unique_id=1717840193]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 154.0
+offset_bottom = 140.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 1
+script = ExtResource("1_r0cib")
+
+[node name="Selected" type="Panel" parent="." unique_id=403437782]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qups4")
+
+[node name="VList" type="VBoxContainer" parent="." unique_id=335095017]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VList" unique_id=1538199067]
+self_modulate = Color(0.0627451, 0.7254902, 0.5058824, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("1_qly2u")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="custom_label" parent="VList" unique_id=779062733 instance=ExtResource("2_r0cib")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+theme_override_fonts/font = ExtResource("3_mafjr")
+theme_override_font_sizes/font_size = 24
+text = "מידע"
+horizontal_alignment = 1
+label_color = "PRIMARY"
+label_size = "NORMAL"

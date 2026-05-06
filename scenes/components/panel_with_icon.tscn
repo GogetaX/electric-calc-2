@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://cifw75w5hoqp2"]
+
+[ext_resource type="Script" uid="uid://cdwutnc2esmsc" path="res://scenes/components/panel_with_icon.gd" id="1_7ftei"]
+[ext_resource type="Texture2D" uid="uid://6jqcodoq477r" path="res://assets/icons/func_icon.png" id="1_aflhv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qups4"]
+bg_color = Color(0.07058824, 0.22745098, 0.16470589, 1)
+border_color = Color(0.15686275, 0.2627451, 0.21568628, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[node name="PanelWithIcon" type="Control" unique_id=1539567322]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 80.0
+offset_bottom = 80.0
+mouse_filter = 1
+script = ExtResource("1_7ftei")
+as_button = null
+hide_bg = null
+
+[node name="Panel" type="Panel" parent="." unique_id=1123340378]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qups4")
+
+[node name="TextureRect" type="TextureRect" parent="Panel" unique_id=2096546208]
+self_modulate = Color(0.30588236, 0.87058824, 0.6392157, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_aflhv")
+expand_mode = 1
+stretch_mode = 5

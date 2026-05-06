@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://dxjsjhahauyqe"]
+
+[ext_resource type="Script" uid="uid://jy70gehbqmkt" path="res://scenes/components/taarif_item.gd" id="1_5x6w0"]
+[ext_resource type="PackedScene" uid="uid://dh864icn07y43" path="res://scenes/components/custom_label.tscn" id="1_s3ngo"]
+[ext_resource type="FontFile" uid="uid://dg65kpdsjo02k" path="res://assets/fonts/NotoSansHebrew-Regular.ttf" id="2_5x6w0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21jnx"]
+bg_color = Color(0.101960786, 0.12941177, 0.11372549, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.23529412, 0.2901961, 0.25882354, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5x6w0"]
+bg_color = Color(0.05882353, 0.14901961, 0.10980392, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[node name="TaarifItem" type="Control" unique_id=602082634]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 153.0
+offset_bottom = 50.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_horizontal = 3
+mouse_filter = 1
+script = ExtResource("1_5x6w0")
+
+[node name="UnSelected" type="Panel" parent="." unique_id=483328755]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_21jnx")
+
+[node name="custom_label" parent="UnSelected" unique_id=779062733 instance=ExtResource("1_s3ngo")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("2_5x6w0")
+theme_override_font_sizes/font_size = 32
+text = "ביתי"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+label_color = "NEUTRAL"
+label_size = "NORMAL_TITLE"
+
+[node name="Selected" type="Panel" parent="." unique_id=727278234]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5x6w0")
+
+[node name="custom_label" parent="Selected" unique_id=292347661 instance=ExtResource("1_s3ngo")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+theme_override_fonts/font = ExtResource("2_5x6w0")
+theme_override_font_sizes/font_size = 32
+text = "ביתי"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+label_color = "PRIMARY"
+label_size = "NORMAL_TITLE"

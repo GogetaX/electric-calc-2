@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://d4dyss2ok4f2d"]
+
+[ext_resource type="PackedScene" uid="uid://dh864icn07y43" path="res://scenes/components/custom_label.tscn" id="1_p2roq"]
+[ext_resource type="Script" uid="uid://c20fd7pptvchc" path="res://scenes/components/info_box.gd" id="1_x1w51"]
+[ext_resource type="PackedScene" uid="uid://cifw75w5hoqp2" path="res://scenes/components/panel_with_icon.tscn" id="2_x1w51"]
+[ext_resource type="FontFile" uid="uid://dg65kpdsjo02k" path="res://assets/fonts/NotoSansHebrew-Regular.ttf" id="4_x0hss"]
+[ext_resource type="PackedScene" uid="uid://dfdb2bv3xj3nd" path="res://scenes/components/spacer.tscn" id="5_u2qhx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p2roq"]
+bg_color = Color(0.11764706, 0.16078432, 0.23137255, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.15686275, 0.2627451, 0.21568628, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="Gradient" id="Gradient_p2roq"]
+offsets = PackedFloat32Array(0, 0.22891566, 0.76506025, 1)
+colors = PackedColorArray(0.24313726, 0.3137255, 0.43137255, 0, 0.24184266, 0.313079, 0.42955896, 1, 0.24313726, 0.3137255, 0.43137255, 1, 0.24313726, 0.3137255, 0.43137255, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_x1w51"]
+gradient = SubResource("Gradient_p2roq")
+
+[node name="info_box" type="Panel" unique_id=1481590261]
+custom_minimum_size = Vector2(0, 292)
+offset_right = 837.0
+offset_bottom = 500.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_p2roq")
+script = ExtResource("1_x1w51")
+hide_right_side = null
+
+[node name="VList" type="VBoxContainer" parent="." unique_id=1749446870]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="HList" type="HBoxContainer" parent="VList" unique_id=1865012096]
+layout_mode = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="title" parent="VList/HList" unique_id=779062733 instance=ExtResource("1_p2roq")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "תעריף ביתי"
+label_color = "WHITE"
+
+[node name="icon" parent="VList/HList" unique_id=1539567322 instance=ExtResource("2_x1w51")]
+layout_mode = 2
+mouse_filter = 2
+as_button = false
+hide_bg = false
+
+[node name="desc" parent="VList" unique_id=954895710 instance=ExtResource("1_p2roq")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("4_x0hss")
+theme_override_font_sizes/font_size = 24
+text = "תעריף ביתי"
+autowrap_mode = 2
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="Spacer" parent="VList" unique_id=1940210848 instance=ExtResource("5_u2qhx")]
+layout_mode = 2
+texture = SubResource("GradientTexture1D_x1w51")
+
+[node name="HList2" type="HBoxContainer" parent="VList" unique_id=332144595]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="last_update" parent="VList/HList2" unique_id=408992539 instance=ExtResource("1_p2roq")]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("4_x0hss")
+theme_override_font_sizes/font_size = 24
+text = "עודכן לאחרונה: 2024"
+horizontal_alignment = 0
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="custom_label5" parent="VList/HList2" unique_id=52703279 instance=ExtResource("1_p2roq")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("4_x0hss")
+theme_override_font_sizes/font_size = 24
+text = "כולל מע\"מ"
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="value" parent="VList/HList2" unique_id=1257952128 instance=ExtResource("1_p2roq")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+theme_override_font_sizes/font_size = 24
+text = "₪64.32"
+label_color = "PRIMARY"
+label_size = "NORMAL_BOLD"
+
+[node name="custom_label6" parent="VList/HList2" unique_id=638678631 instance=ExtResource("1_p2roq")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("4_x0hss")
+theme_override_font_sizes/font_size = 24
+text = "באגורות לכל קוט\"ש"
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[connection signal="resized" from="VList" to="." method="_on_v_list_resized"]

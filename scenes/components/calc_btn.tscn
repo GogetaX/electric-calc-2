@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://fkes3n8jgjps"]
+
+[ext_resource type="Script" uid="uid://bqclvlw0qalmq" path="res://scenes/components/calc_btn.gd" id="1_52bhv"]
+[ext_resource type="PackedScene" uid="uid://dh864icn07y43" path="res://scenes/components/custom_label.tscn" id="1_gsyvf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w7beu"]
+bg_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+border_color = Color(0.15686275, 0.2627451, 0.21568628, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.0627451, 0.7254902, 0.5058824, 0.08627451)
+shadow_size = 10
+
+[node name="CalcBtn" type="Control" unique_id=1626528086]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 313.0
+offset_bottom = 100.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 1
+script = ExtResource("1_52bhv")
+
+[node name="Panel" type="Panel" parent="." unique_id=1040464367]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w7beu")
+
+[node name="custom_label" parent="." unique_id=779062733 instance=ExtResource("1_gsyvf")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0.21960784, 0.14117648, 1)
+text = "חשב"
+horizontal_alignment = 1
+vertical_alignment = 1
+label_color = "PRIMARY_INVERTED"

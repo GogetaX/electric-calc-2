@@ -1,0 +1,61 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Electric calc 2"
+run/main_scene="uid://duvi0qkwx6bel"
+config/features=PackedStringArray("4.6", "GL Compatibility")
+boot_splash/bg_color=Color(0.043137256, 0.06666667, 0.1254902, 1)
+config/icon="res://icon.svg"
+
+[autoload]
+
+GlobalColor="*uid://bo5k4b2nctd27"
+GlobalSignals="*uid://gswemimvc0t3"
+GlobalBtn="*uid://cxi5ukfgh53cr"
+GlobalLoader="*uid://c71jhqfn5i77c"
+Global="*uid://wt5s8knt8xlm"
+GlobalCalcDb="*uid://1rkxg41avkam"
+
+[display]
+
+window/size/viewport_width=1080
+window/size/viewport_height=1920
+window/size/window_width_override=540
+window/size/window_height_override=960
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/stretch/scale=1.2
+window/handheld/orientation=1
+window/vsync/vsync_mode=0
+window/ios/allow_high_refresh_rate=false
+window/ios/hide_status_bar=false
+
+[gui]
+
+theme/default_theme_scale=2.0
+theme/custom="uid://0ggo4uawe5ve"
+theme/custom_font="uid://dg65kpdsjo02k"
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.043137256, 0.06666667, 0.1254902, 1)

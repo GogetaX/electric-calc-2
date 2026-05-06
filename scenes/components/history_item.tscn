@@ -1,0 +1,170 @@
+[gd_scene format=3 uid="uid://buvj6kygblg0l"]
+
+[ext_resource type="PackedScene" uid="uid://dh864icn07y43" path="res://scenes/components/custom_label.tscn" id="1_bflrk"]
+[ext_resource type="Script" uid="uid://bl28hktt6lvu2" path="res://scenes/components/history_item.gd" id="1_g8cuk"]
+[ext_resource type="FontFile" uid="uid://dg65kpdsjo02k" path="res://assets/fonts/NotoSansHebrew-Regular.ttf" id="2_g8cuk"]
+[ext_resource type="Texture2D" uid="uid://c6d84hqe4slb1" path="res://assets/icons/date_icon.png" id="3_2ltkv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_71cb8"]
+bg_color = Color(0.121891595, 0.20960307, 0.16571042, 1)
+border_color = Color(0.15686275, 0.2627451, 0.21568628, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[node name="HistoryItem" type="Panel" unique_id=1802322898]
+custom_minimum_size = Vector2(0, 110)
+offset_right = 729.0
+offset_bottom = 110.0
+mouse_filter = 2
+script = ExtResource("1_g8cuk")
+
+[node name="HList" type="HBoxContainer" parent="." unique_id=837422941]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VList" type="VBoxContainer" parent="HList" unique_id=818303284]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="last_pay" parent="HList/VList" unique_id=779062733 instance=ExtResource("1_bflrk")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+theme_override_font_sizes/font_size = 24
+text = "₪289.44"
+horizontal_alignment = 0
+label_color = "PRIMARY"
+label_size = "NORMAL_BOLD"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HList/VList" unique_id=391835548]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="calculated_kw" parent="HList/VList/HBoxContainer" unique_id=1740373631 instance=ExtResource("1_bflrk")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("2_g8cuk")
+theme_override_font_sizes/font_size = 24
+text = "450 קוט״ש"
+horizontal_alignment = 0
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="date_spacer" parent="HList/VList/HBoxContainer" unique_id=86283386 instance=ExtResource("1_bflrk")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("2_g8cuk")
+theme_override_font_sizes/font_size = 24
+text = "|"
+horizontal_alignment = 0
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="days_passed" parent="HList/VList/HBoxContainer" unique_id=129545698 instance=ExtResource("1_bflrk")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("2_g8cuk")
+theme_override_font_sizes/font_size = 24
+text = "30 יום"
+horizontal_alignment = 0
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="Control" type="Control" parent="HList" unique_id=1744097514]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="VList2" type="VBoxContainer" parent="HList" unique_id=775034770]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="prev_date" parent="HList/VList2" unique_id=215657408 instance=ExtResource("1_bflrk")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "12.05.2024"
+label_color = "WHITE"
+label_size = "NORMAL_BOLD"
+
+[node name="prev_kw" parent="HList/VList2" unique_id=292499435 instance=ExtResource("1_bflrk")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("2_g8cuk")
+theme_override_font_sizes/font_size = 24
+text = "150"
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HList" unique_id=1474145429]
+layout_mode = 2
+
+[node name="right_arrow" parent="HList/HBoxContainer" unique_id=1172204189 instance=ExtResource("1_bflrk")]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("2_g8cuk")
+theme_override_font_sizes/font_size = 32
+text = "→"
+vertical_alignment = 1
+label_color = "NEUTRAL"
+label_size = "NORMAL_TITLE"
+
+[node name="VList4" type="VBoxContainer" parent="HList" unique_id=1813719837]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="last_date" parent="HList/VList4" unique_id=589022767 instance=ExtResource("1_bflrk")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "12.06.2024"
+label_color = "WHITE"
+label_size = "NORMAL_BOLD"
+
+[node name="last_kw" parent="HList/VList4" unique_id=696109627 instance=ExtResource("1_bflrk")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("2_g8cuk")
+theme_override_font_sizes/font_size = 24
+text = "600"
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="VList3" type="VBoxContainer" parent="HList" unique_id=2048463208]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PanelWithIcon" type="Panel" parent="HList/VList3" unique_id=1464742654]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_71cb8")
+
+[node name="TextureRect" type="TextureRect" parent="HList/VList3/PanelWithIcon" unique_id=1949234328]
+self_modulate = Color(1, 0.7254902, 0.37254903, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_2ltkv")
+expand_mode = 1
+stretch_mode = 5

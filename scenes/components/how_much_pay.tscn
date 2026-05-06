@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://dga8tcjboqsjh"]
+
+[ext_resource type="Texture2D" uid="uid://bfn4sohtit5hu" path="res://assets/icons/electric_icon.png" id="1_6tnea"]
+[ext_resource type="Script" uid="uid://b2oq5msrhhbh6" path="res://scenes/components/how_much_pay.gd" id="1_e338h"]
+[ext_resource type="PackedScene" uid="uid://dh864icn07y43" path="res://scenes/components/custom_label.tscn" id="2_e338h"]
+[ext_resource type="FontFile" uid="uid://dg65kpdsjo02k" path="res://assets/fonts/NotoSansHebrew-Regular.ttf" id="3_jrlq2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d1hkt"]
+bg_color = Color(0.93333334, 0.59607846, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.05490196, 0.08235294, 0.06666667, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[node name="HowMuchPay" type="Panel" unique_id=1829044651]
+custom_minimum_size = Vector2(0, 300)
+offset_right = 754.0
+offset_bottom = 300.0
+mouse_filter = 2
+script = ExtResource("1_e338h")
+
+[node name="VList" type="VBoxContainer" parent="." unique_id=186631220]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HList" type="HBoxContainer" parent="VList" unique_id=1691127227]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VList" type="VBoxContainer" parent="VList/HList" unique_id=932127669]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="VList/HList/VList" unique_id=1443007354]
+z_index = 1
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_d1hkt")
+
+[node name="TextureRect" type="TextureRect" parent="VList/HList/VList/Panel" unique_id=1722577952]
+self_modulate = Color(0.35686275, 0.21960784, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_6tnea")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="VList2" type="VBoxContainer" parent="VList/HList" unique_id=1409731508]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="custom_label" parent="VList/HList/VList2" unique_id=779062733 instance=ExtResource("2_e338h")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+theme_override_fonts/font = ExtResource("3_jrlq2")
+theme_override_font_sizes/font_size = 24
+text = "חישוב חודשי מהיר"
+label_color = "PRIMARY"
+label_size = "NORMAL"
+
+[node name="custom_label2" parent="VList/HList/VList2" unique_id=1589743477 instance=ExtResource("2_e338h")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+text = "כמה לשלם לפי קריאת המונה?"
+autowrap_mode = 2
+label_color = "WHITE"
+label_size = "INPUT_BOLD"
+
+[node name="custom_label3" parent="VList/HList/VList2" unique_id=793125367 instance=ExtResource("2_e338h")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("3_jrlq2")
+theme_override_font_sizes/font_size = 24
+text = "הנתונים נשמרים במכשיר, ללא אינטרנט וללא חשבון משתמש."
+autowrap_mode = 2
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="Panel" type="Panel" parent="VList" unique_id=305732970]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"PanelUnder"
+
+[node name="HList" type="HBoxContainer" parent="VList/Panel" unique_id=1099890565]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="custom_label" parent="VList/Panel/HList" unique_id=1996767299 instance=ExtResource("2_e338h")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_jrlq2")
+theme_override_font_sizes/font_size = 24
+text = "מאי 2026"
+label_color = "WHITE"
+label_size = "NORMAL"
+
+[node name="Control" type="Control" parent="VList/Panel/HList" unique_id=569208968]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="custom_label2" parent="VList/Panel/HList" unique_id=18629906 instance=ExtResource("2_e338h")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("3_jrlq2")
+theme_override_font_sizes/font_size = 24
+text = "חודש חשבון"
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[connection signal="resized" from="VList" to="." method="_on_v_list_resized"]

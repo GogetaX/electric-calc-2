@@ -1,0 +1,40 @@
+[gd_resource type="Theme" format=3 uid="uid://0ggo4uawe5ve"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dovxs"]
+bg_color = Color(0.07058824, 0.13333334, 0.101960786, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.15686275, 0.2627451, 0.21568628, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21jnx"]
+bg_color = Color(0.06666667, 0.10980392, 0.09019608, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rjgu6"]
+bg_color = Color(0.30588236, 0.87058824, 0.6392157, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vxwtt"]
+draw_center = false
+
+[resource]
+Panel/styles/panel = SubResource("StyleBoxFlat_dovxs")
+PanelUnder/base_type = &"Panel"
+PanelUnder/styles/panel = SubResource("StyleBoxFlat_21jnx")
+VScrollBar/constants/padding_left = 20
+VScrollBar/constants/padding_right = 0
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_rjgu6")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_vxwtt")

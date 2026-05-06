@@ -1,0 +1,205 @@
+[gd_scene format=3 uid="uid://dr0ers5y40ys3"]
+
+[ext_resource type="PackedScene" uid="uid://cifw75w5hoqp2" path="res://scenes/components/panel_with_icon.tscn" id="1_ifbid"]
+[ext_resource type="Script" uid="uid://bjwillrt18qsp" path="res://scenes/pages/app_update.gd" id="1_v1n5g"]
+[ext_resource type="Texture2D" uid="uid://bo4ly1j35kixs" path="res://assets/icons/update_icon.png" id="2_v1n5g"]
+[ext_resource type="PackedScene" uid="uid://dh864icn07y43" path="res://scenes/components/custom_label.tscn" id="3_q8ccl"]
+[ext_resource type="FontFile" uid="uid://dg65kpdsjo02k" path="res://assets/fonts/NotoSansHebrew-Regular.ttf" id="4_4r2ou"]
+[ext_resource type="Texture2D" uid="uid://dg2tprwk6nmar" path="res://assets/icons/history_icon.png" id="5_mgusp"]
+[ext_resource type="Texture2D" uid="uid://b2eybdpr2th6j" path="res://assets/icons/import_2_icon.png" id="6_o7l5g"]
+[ext_resource type="PackedScene" uid="uid://fkes3n8jgjps" path="res://scenes/components/calc_btn.tscn" id="8_q8ccl"]
+
+[node name="AppUpdate" type="Panel" unique_id=887073509]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -365.0
+offset_top = -539.0
+offset_right = 365.0
+offset_bottom = 539.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v1n5g")
+
+[node name="VList" type="VBoxContainer" parent="." unique_id=1905024443]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control3" type="Control" parent="VList" unique_id=1308900695]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="VList" unique_id=963820063]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="PanelWithIcon" parent="VList/Control" unique_id=1539567322 instance=ExtResource("1_ifbid")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+icon = ExtResource("2_v1n5g")
+as_button = false
+hide_bg = false
+
+[node name="custom_label" parent="VList" unique_id=779062733 instance=ExtResource("3_q8ccl")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+theme_override_font_sizes/font_size = 24
+text = "עדכון מערכת"
+horizontal_alignment = 1
+label_color = "PRIMARY"
+label_size = "NORMAL_BOLD"
+
+[node name="custom_label2" parent="VList" unique_id=379117224 instance=ExtResource("3_q8ccl")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "שדרגנו את המערכת"
+horizontal_alignment = 1
+label_color = "WHITE"
+
+[node name="Control4" type="Control" parent="VList" unique_id=504790047]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="custom_label3" parent="VList" unique_id=366392923 instance=ExtResource("3_q8ccl")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("4_4r2ou")
+theme_override_font_sizes/font_size = 24
+text = "האפליקציה עודכנה לגרסה חדשה ומשופרת. היסטוריית החישובים שנשמרה באפליקציה הישנה תיובא אוטומטית, ללא צורך בפעולה ידנית."
+horizontal_alignment = 1
+autowrap_mode = 2
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="Control5" type="Control" parent="VList" unique_id=635883523]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VList" unique_id=1841648040]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_type_variation = &"PanelUnder"
+
+[node name="VList" type="VBoxContainer" parent="VList/Panel" unique_id=1812679759]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HList" type="HBoxContainer" parent="VList/Panel/VList" unique_id=585461154]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 2
+
+[node name="VList" type="VBoxContainer" parent="VList/Panel/VList/HList" unique_id=407836266]
+layout_mode = 2
+
+[node name="custom_label" parent="VList/Panel/VList/HList/VList" unique_id=1491911059 instance=ExtResource("3_q8ccl")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "ההיסטוריה נשמרת"
+label_color = "WHITE"
+label_size = "NORMAL_BOLD"
+
+[node name="custom_label2" parent="VList/Panel/VList/HList/VList" unique_id=1110147250 instance=ExtResource("3_q8ccl")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("4_4r2ou")
+theme_override_font_sizes/font_size = 24
+text = "החשבונות הישנים יופיעו במסך ההיסטוריה."
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="TextureRect" type="TextureRect" parent="VList/Panel/VList/HList" unique_id=825261649]
+self_modulate = Color(0.2509804, 0.69411767, 0.5254902, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("5_mgusp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HList2" type="HBoxContainer" parent="VList/Panel/VList" unique_id=404882256]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 2
+
+[node name="VList" type="VBoxContainer" parent="VList/Panel/VList/HList2" unique_id=45825295]
+layout_mode = 2
+
+[node name="custom_label" parent="VList/Panel/VList/HList2/VList" unique_id=510788593 instance=ExtResource("3_q8ccl")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "ייבוא אוטומטי"
+label_color = "WHITE"
+label_size = "NORMAL_BOLD"
+
+[node name="custom_label2" parent="VList/Panel/VList/HList2/VList" unique_id=1252184879 instance=ExtResource("3_q8ccl")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("4_4r2ou")
+theme_override_font_sizes/font_size = 24
+text = "אין צורך להזין מחדש קריאות קודמות."
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="TextureRect" type="TextureRect" parent="VList/Panel/VList/HList2" unique_id=266413247]
+self_modulate = Color(1, 0.7254902, 0.37254903, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("6_o7l5g")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Control6" type="Control" parent="VList" unique_id=2120048118]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="CalcBtn" parent="VList" unique_id=1626528086 instance=ExtResource("8_q8ccl")]
+layout_mode = 2
+title = "הבנתי"
+
+[node name="custom_label4" parent="VList" unique_id=575670353 instance=ExtResource("3_q8ccl")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("4_4r2ou")
+theme_override_font_sizes/font_size = 24
+text = "הנתונים נשמרים במכשיר בלבד."
+horizontal_alignment = 1
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="Control2" type="Control" parent="VList" unique_id=442537434]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[connection signal="resized" from="VList" to="." method="_on_v_list_resized"]
+[connection signal="resized" from="VList/Panel/VList" to="." method="PanelResized"]
+[connection signal="OnPress" from="VList/CalcBtn" to="." method="_on_calc_btn_on_press"]

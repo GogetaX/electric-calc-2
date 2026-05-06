@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dfdb2bv3xj3nd"]
+
+[sub_resource type="Gradient" id="Gradient_cevi6"]
+offsets = PackedFloat32Array(0, 0.22891566, 0.76506025, 1)
+colors = PackedColorArray(0.15686275, 0.19607843, 0.16862746, 0, 0.15686275, 0.19607843, 0.16862746, 1, 0.15686275, 0.19607843, 0.16862746, 1, 0.15686275, 0.19607843, 0.16862746, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dxc2c"]
+gradient = SubResource("Gradient_cevi6")
+
+[node name="Spacer" type="TextureRect" unique_id=1940210848]
+custom_minimum_size = Vector2(0, 4)
+mouse_filter = 2
+texture = SubResource("GradientTexture1D_dxc2c")

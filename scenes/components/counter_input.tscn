@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://dpo4uh8d320n0"]
+
+[ext_resource type="PackedScene" uid="uid://dh864icn07y43" path="res://scenes/components/custom_label.tscn" id="1_bdslh"]
+[ext_resource type="Script" uid="uid://bv8l0f2qid3sh" path="res://scenes/components/counter_input.gd" id="1_in3ek"]
+[ext_resource type="FontFile" uid="uid://dg65kpdsjo02k" path="res://assets/fonts/NotoSansHebrew-Regular.ttf" id="2_in3ek"]
+[ext_resource type="FontFile" uid="uid://ly7r2wil7wut" path="res://assets/fonts/NotoSansHebrew-Bold.ttf" id="3_7dofb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_in3ek"]
+bg_color = Color(0.101960786, 0.12941177, 0.11372549, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.15686275, 0.2627451, 0.21568628, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bdslh"]
+bg_color = Color(0.07058824, 0.13333334, 0.101960786, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.08235294, 0.42745098, 0.30980393, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="CounterInput" type="Panel" unique_id=638524408]
+custom_minimum_size = Vector2(50, 50)
+offset_right = 339.0
+offset_bottom = 160.0
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_in3ek")
+script = ExtResource("1_in3ek")
+
+[node name="VList" type="VBoxContainer" parent="." unique_id=177780473]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="title" parent="VList" unique_id=779062733 instance=ExtResource("1_bdslh")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5803922, 0.6392157, 0.72156864, 1)
+theme_override_fonts/font = ExtResource("2_in3ek")
+theme_override_font_sizes/font_size = 32
+text = "קריאה נוכחית"
+label_color = "TERITIARY"
+label_size = "NORMAL_TITLE"
+
+[node name="LineEdit" type="LineEdit" parent="VList" unique_id=125631650]
+layout_mode = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_7dofb")
+theme_override_font_sizes/font_size = 48
+text = "800"
+virtual_keyboard_type = 3
+
+[node name="hint" parent="VList" unique_id=428504736 instance=ExtResource("1_bdslh")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+theme_override_fonts/font = ExtResource("2_in3ek")
+theme_override_font_sizes/font_size = 24
+text = "צריך להיות גבוה יותר"
+label_color = "PRIMARY"
+label_size = "NORMAL"
+
+[node name="SelectedPanel" type="Panel" parent="." unique_id=1955634213]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bdslh")
+
+[connection signal="focus_entered" from="VList/LineEdit" to="." method="_on_line_edit_focus_entered"]
+[connection signal="focus_exited" from="VList/LineEdit" to="." method="_on_line_edit_focus_exited"]

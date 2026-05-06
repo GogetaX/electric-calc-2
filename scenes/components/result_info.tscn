@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://blbokm0fg2rtu"]
+
+[ext_resource type="Script" uid="uid://bxhf7buhffyuc" path="res://scenes/components/result_info.gd" id="1_2l530"]
+[ext_resource type="PackedScene" uid="uid://dh864icn07y43" path="res://scenes/components/custom_label.tscn" id="1_paehj"]
+[ext_resource type="FontFile" uid="uid://dg65kpdsjo02k" path="res://assets/fonts/NotoSansHebrew-Regular.ttf" id="2_2l530"]
+[ext_resource type="Texture2D" uid="uid://6jqcodoq477r" path="res://assets/icons/func_icon.png" id="3_24nkp"]
+[ext_resource type="PackedScene" uid="uid://cifw75w5hoqp2" path="res://scenes/components/panel_with_icon.tscn" id="4_paehj"]
+
+[node name="ResultInfo" type="Panel" unique_id=2136359308]
+custom_minimum_size = Vector2(100, 200)
+offset_right = 560.0
+offset_bottom = 200.0
+mouse_filter = 2
+script = ExtResource("1_2l530")
+
+[node name="VList" type="VBoxContainer" parent="." unique_id=572662500]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="HList" type="HBoxContainer" parent="VList" unique_id=1075314476]
+layout_mode = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="VList" type="VBoxContainer" parent="VList/HList" unique_id=767525153]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="custom_label" parent="VList/HList/VList" unique_id=779062733 instance=ExtResource("1_paehj")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_2l530")
+theme_override_font_sizes/font_size = 32
+text = "תצוגת חישוב"
+label_color = "WHITE"
+label_size = "NORMAL_TITLE"
+
+[node name="custom_label2" parent="VList/HList/VList" unique_id=1805736424 instance=ExtResource("1_paehj")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("2_2l530")
+theme_override_font_sizes/font_size = 24
+text = "נוסחה קצרה לפני שמירת החשבון"
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VList/HList" unique_id=128386796]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PanelWithIcon" parent="VList/HList/VBoxContainer" unique_id=29907083 instance=ExtResource("4_paehj")]
+layout_mode = 2
+icon = ExtResource("3_24nkp")
+
+[node name="result_bar" type="Panel" parent="VList" unique_id=1933987296]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"PanelUnder"
+
+[node name="HList" type="HBoxContainer" parent="VList/result_bar" unique_id=817000923]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="custom_label" parent="VList/result_bar/HList" unique_id=77184699 instance=ExtResource("1_paehj")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("2_2l530")
+theme_override_font_sizes/font_size = 24
+text = "800 - 300 ="
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="custom_label2" parent="VList/result_bar/HList" unique_id=1137311958 instance=ExtResource("1_paehj")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+theme_override_font_sizes/font_size = 24
+text = "500 Kwh"
+label_color = "PRIMARY"
+label_size = "NORMAL_BOLD"
+
+[connection signal="minimum_size_changed" from="VList" to="." method="_on_v_list_minimum_size_changed"]

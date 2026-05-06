@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://dfxvsxuxjjj3v"]
+
+[ext_resource type="PackedScene" uid="uid://dh864icn07y43" path="res://scenes/components/custom_label.tscn" id="1_o1rto"]
+[ext_resource type="FontFile" uid="uid://dg65kpdsjo02k" path="res://assets/fonts/NotoSansHebrew-Regular.ttf" id="2_ntbr3"]
+[ext_resource type="PackedScene" uid="uid://d4dyss2ok4f2d" path="res://scenes/components/info_box.tscn" id="3_qjxl1"]
+[ext_resource type="Texture2D" uid="uid://voa7c46xey40" path="res://assets/icons/home_icon.png" id="4_egyfl"]
+[ext_resource type="Texture2D" uid="uid://c1qjur8juiraq" path="res://assets/icons/industry_icon.png" id="5_egyfl"]
+[ext_resource type="Texture2D" uid="uid://y4nc4bo3aobu" path="res://assets/icons/percent_icon.png" id="6_5b6h6"]
+[ext_resource type="Texture2D" uid="uid://doixt7js80ok" path="res://assets/icons/recepie_icon.png" id="6_8cxh8"]
+
+[node name="InfoPage" type="VBoxContainer" unique_id=1571501262]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="Control" type="Control" parent="." unique_id=1835748188]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="custom_label" parent="." unique_id=779062733 instance=ExtResource("1_o1rto")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+text = "מידע על תעריפים"
+label_color = "WHITE"
+label_size = "INPUT_BOLD"
+
+[node name="custom_label2" parent="." unique_id=976632521 instance=ExtResource("1_o1rto")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5803922, 0.6392157, 0.72156864, 1)
+theme_override_fonts/font = ExtResource("2_ntbr3")
+theme_override_font_sizes/font_size = 24
+text = "הבנת מרכיבי חשבון החשמל"
+label_color = "TERITIARY"
+label_size = "NORMAL"
+
+[node name="info_box" parent="." unique_id=1481590261 instance=ExtResource("3_qjxl1")]
+layout_mode = 2
+icon = ExtResource("4_egyfl")
+description = "התעריף המיועד ללקוחות פרטיים ומשקי בית. מחושב על בסיס צריכה מדורגת וכולל את עלות ייצור החשמל, הולכה, וחלוקה לרשת הביתית. תעריף זה מתעדכן מעת לעת על ידי רשות החשמל."
+
+[node name="info_box2" parent="." unique_id=1859338905 instance=ExtResource("3_qjxl1")]
+layout_mode = 2
+title = "תעריף כללי"
+icon = ExtResource("5_egyfl")
+description = "חיוב חודשי או דו-חודשי קבוע הנגבה מכל צרכן ללא קשר לכמות החשמל שנצרכה. תשלום זה נועד לכסות את עלויות קריאת המונה, טיפול בצרכן, ותחזוקת חיבור החשמל הבסיסי לנכס."
+
+[node name="info_box4" parent="." unique_id=1897352922 instance=ExtResource("3_qjxl1")]
+layout_mode = 2
+title = "תשלום קבוע"
+icon = ExtResource("6_8cxh8")
+description = "חיוב חודשי או דו-חודשי קבוע הנגבה מכל צרכן ללא קשר לכמות החשמל שנצרכה. תשלום זה נועד לכסות את עלויות קריאת המונה, טיפול בצרכן, ותחזוקת חיבור החשמל הבסיסי לנכס."
+last_update = "נגבה בכל חשבון"
+hide_right_side = true
+
+[node name="info_box3" parent="." unique_id=1472535575 instance=ExtResource("3_qjxl1")]
+custom_minimum_size = Vector2(0, 214)
+layout_mode = 2
+title = "כולל מע״מ"
+icon = ExtResource("6_5b6h6")
+description = "כל התעריפים והסכומים המוצגים במחשבון מגלמים בתוכם את מס ערך מוסף (מע\"מ) כחוק. החישוב הסופי משקף את הסכום המדויק לתשלום כולל כל המיסים הרלוונטיים כדי לספק שקיפות מלאה."
+hide_spacer = true

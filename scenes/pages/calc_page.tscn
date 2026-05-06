@@ -1,0 +1,195 @@
+[gd_scene format=3 uid="uid://byo3sjn1qup6k"]
+
+[ext_resource type="PackedScene" uid="uid://dga8tcjboqsjh" path="res://scenes/components/how_much_pay.tscn" id="1_i4ur7"]
+[ext_resource type="Script" uid="uid://cwk23eew7ndhc" path="res://scenes/pages/calc_page.gd" id="1_lwkig"]
+[ext_resource type="PackedScene" uid="uid://dpo4uh8d320n0" path="res://scenes/components/counter_input.tscn" id="2_ceqyl"]
+[ext_resource type="Texture2D" uid="uid://caj5x3loidep1" path="res://assets/icons/arrow_left.png" id="3_ceqyl"]
+[ext_resource type="PackedScene" uid="uid://blbokm0fg2rtu" path="res://scenes/components/result_info.tscn" id="3_lwkig"]
+[ext_resource type="PackedScene" uid="uid://dh864icn07y43" path="res://scenes/components/custom_label.tscn" id="4_rcgvo"]
+[ext_resource type="FontFile" uid="uid://dg65kpdsjo02k" path="res://assets/fonts/NotoSansHebrew-Regular.ttf" id="5_eoxoe"]
+[ext_resource type="PackedScene" uid="uid://dxjsjhahauyqe" path="res://scenes/components/taarif_item.tscn" id="6_oiem5"]
+[ext_resource type="PackedScene" uid="uid://c8kwmgnu7rrfm" path="res://scenes/components/TariffSetting.tscn" id="7_1i3ub"]
+[ext_resource type="PackedScene" uid="uid://fkes3n8jgjps" path="res://scenes/components/calc_btn.tscn" id="8_bvqmj"]
+[ext_resource type="PackedScene" uid="uid://cgcakdyq71pfb" path="res://scenes/components/to_pay.tscn" id="9_52u66"]
+[ext_resource type="PackedScene" uid="uid://buvj6kygblg0l" path="res://scenes/components/history_item.tscn" id="12_lwkig"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lwkig"]
+bg_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.05490196, 0.08235294, 0.06666667, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[node name="CalcPage" type="VBoxContainer" unique_id=616357585]
+offset_right = 882.0
+offset_bottom = 1670.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/separation = 20
+script = ExtResource("1_lwkig")
+
+[node name="HowMuchPay" parent="." unique_id=1829044651 instance=ExtResource("1_i4ur7")]
+layout_mode = 2
+
+[node name="HList" type="HBoxContainer" parent="." unique_id=1355313340]
+custom_minimum_size = Vector2(0, 190)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="CounterInput" parent="HList" unique_id=638524408 instance=ExtResource("2_ceqyl")]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="HList" unique_id=1666997848]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="HList/Control" unique_id=495899891]
+z_index = 1
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lwkig")
+
+[node name="TextureRect" type="TextureRect" parent="HList/Control/Panel" unique_id=795185176]
+self_modulate = Color(0.014089796, 0.30211204, 0.20215395, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_ceqyl")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="CounterInput2" parent="HList" unique_id=2053734426 instance=ExtResource("2_ceqyl")]
+layout_mode = 2
+tab_type = "LAST_TIME"
+
+[node name="ResultInfo" parent="." unique_id=2136359308 instance=ExtResource("3_lwkig")]
+layout_mode = 2
+
+[node name="HList4" type="HBoxContainer" parent="." unique_id=1840299894]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="custom_label2" parent="HList4" unique_id=779062733 instance=ExtResource("4_rcgvo")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+theme_override_fonts/font = ExtResource("5_eoxoe")
+theme_override_font_sizes/font_size = 32
+text = "עריכת תעריפים"
+label_color = "PRIMARY"
+label_size = "NORMAL_TITLE"
+
+[node name="Control" type="Control" parent="HList4" unique_id=840241274]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="custom_label" parent="HList4" unique_id=949366403 instance=ExtResource("4_rcgvo")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_eoxoe")
+theme_override_font_sizes/font_size = 32
+text = "תעריף"
+label_color = "WHITE"
+label_size = "NORMAL_TITLE"
+
+[node name="TaarifSelector" type="HBoxContainer" parent="." unique_id=367324219]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="CustomTab" parent="TaarifSelector" unique_id=602082634 instance=ExtResource("6_oiem5")]
+layout_mode = 2
+tab_name = "מותאם"
+
+[node name="DefaultTab" parent="TaarifSelector" unique_id=1022834733 instance=ExtResource("6_oiem5")]
+layout_mode = 2
+tab_name = "כללי"
+
+[node name="HomeTab" parent="TaarifSelector" unique_id=1559157495 instance=ExtResource("6_oiem5")]
+layout_mode = 2
+
+[node name="HouseTab" type="HBoxContainer" parent="." unique_id=1259775094]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="Kavua" parent="HouseTab" unique_id=96954626 instance=ExtResource("7_1i3ub")]
+layout_mode = 2
+value_str = "₪0.00"
+with_selector = true
+
+[node name="KotashPrice" parent="HouseTab" unique_id=991715205 instance=ExtResource("7_1i3ub")]
+layout_mode = 2
+title = "מחיר לקוט״ש"
+
+[node name="CalcBtn" parent="." unique_id=1626528086 instance=ExtResource("8_bvqmj")]
+layout_mode = 2
+
+[node name="ToPay" parent="." unique_id=2091667190 instance=ExtResource("9_52u66")]
+layout_mode = 2
+
+[node name="HList3" type="HBoxContainer" parent="." unique_id=1512778750]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="custom_label2" parent="HList3" unique_id=610399364 instance=ExtResource("4_rcgvo")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+theme_override_fonts/font = ExtResource("5_eoxoe")
+theme_override_font_sizes/font_size = 32
+text = "הצג הכל"
+label_color = "PRIMARY"
+label_size = "NORMAL_TITLE"
+
+[node name="Control" type="Control" parent="HList3" unique_id=1095170037]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="custom_label" parent="HList3" unique_id=943005591 instance=ExtResource("4_rcgvo")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_eoxoe")
+theme_override_font_sizes/font_size = 32
+text = "היסטוריה"
+label_color = "WHITE"
+label_size = "NORMAL_TITLE"
+
+[node name="HistoryList" type="VBoxContainer" parent="." unique_id=1072125039]
+layout_mode = 2
+
+[node name="HistoryItem" parent="HistoryList" unique_id=1802322898 instance=ExtResource("12_lwkig")]
+layout_mode = 2
+
+[connection signal="OnPress" from="TaarifSelector/CustomTab" to="." method="_on_custom_tab_on_press"]
+[connection signal="OnPress" from="TaarifSelector/DefaultTab" to="." method="_on_default_tab_on_press"]
+[connection signal="OnPress" from="TaarifSelector/HomeTab" to="." method="_on_home_tab_on_press"]
+[connection signal="SettingPressed" from="HouseTab/Kavua" to="." method="_on_kavua_setting_pressed"]

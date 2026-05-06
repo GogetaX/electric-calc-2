@@ -1,0 +1,527 @@
+[gd_scene format=3 uid="uid://c4ehcv6jbjf35"]
+
+[ext_resource type="Script" uid="uid://fchclramaewa" path="res://scenes/pages/kavua_settings_popup.gd" id="1_f5mgn"]
+[ext_resource type="PackedScene" uid="uid://cifw75w5hoqp2" path="res://scenes/components/panel_with_icon.tscn" id="2_amcpq"]
+[ext_resource type="PackedScene" uid="uid://dxjsjhahauyqe" path="res://scenes/components/taarif_item.tscn" id="4_frxxt"]
+[ext_resource type="PackedScene" uid="uid://dh864icn07y43" path="res://scenes/components/custom_label.tscn" id="4_lo5t6"]
+[ext_resource type="FontFile" uid="uid://dg65kpdsjo02k" path="res://assets/fonts/NotoSansHebrew-Regular.ttf" id="5_seil0"]
+[ext_resource type="Texture2D" uid="uid://devfhbq45bqj4" path="res://assets/icons/pie_icon.png" id="6_xilq6"]
+[ext_resource type="Texture2D" uid="uid://bfn4sohtit5hu" path="res://assets/icons/electric_icon.png" id="7_50q0j"]
+[ext_resource type="Texture2D" uid="uid://ffrue0eacuat" path="res://assets/icons/info_icon.png" id="8_0da2o"]
+[ext_resource type="PackedScene" uid="uid://fkes3n8jgjps" path="res://scenes/components/calc_btn.tscn" id="8_mioah"]
+[ext_resource type="PackedScene" uid="uid://dfdb2bv3xj3nd" path="res://scenes/components/spacer.tscn" id="9_amcpq"]
+[ext_resource type="PackedScene" uid="uid://bgu3in1gl6h18" path="res://scenes/components/cancel_btn.tscn" id="10_lo5t6"]
+
+[node name="KavuaSettingPopup" type="Panel" unique_id=887073509]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 61.0
+offset_top = 92.0
+offset_right = -61.0
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f5mgn")
+
+[node name="VList" type="VBoxContainer" parent="." unique_id=1905024443]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VList" unique_id=286923489]
+layout_mode = 2
+alignment = 2
+
+[node name="customer_type" parent="VList/HBoxContainer2" unique_id=779062733 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+text = "לקוח ביתי"
+label_color = "PRIMARY"
+
+[node name="custom_label2" parent="VList/HBoxContainer2" unique_id=1694379212 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_seil0")
+theme_override_font_sizes/font_size = 32
+text = "תשלום קבוע"
+label_color = "WHITE"
+label_size = "NORMAL_TITLE"
+
+[node name="custom_label2" parent="VList" unique_id=1400609940 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("5_seil0")
+theme_override_font_sizes/font_size = 24
+text = "בחירת סוג תשלום קבוע וחלוקת החשבון"
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="Control" type="Control" parent="VList" unique_id=1031280157]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="custom_label3" parent="VList" unique_id=652209285 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "סוג לקוח"
+label_color = "WHITE"
+label_size = "NORMAL_BOLD"
+
+[node name="CustomerTypeContainer" type="HBoxContainer" parent="VList" unique_id=778713723]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="OneMonth" parent="VList/CustomerTypeContainer" unique_id=602082634 instance=ExtResource("4_frxxt")]
+layout_mode = 2
+tab_name = "חד חודשי"
+label_size = "NORMAL_BOLD"
+tab_id = "kavua_house_tab"
+setting_name = "single_month_customer"
+
+[node name="TwoMonthThreePhase" parent="VList/CustomerTypeContainer" unique_id=1382734412 instance=ExtResource("4_frxxt")]
+layout_mode = 2
+tab_name = "דו חודשי
+תלת פאזי"
+label_size = "NORMAL_BOLD"
+tab_id = "kavua_house_tab"
+setting_name = "2_month_base_3_phase"
+
+[node name="TwoMonthOnePhase" parent="VList/CustomerTypeContainer" unique_id=2054924721 instance=ExtResource("4_frxxt")]
+layout_mode = 2
+tab_name = "דו חודשי
+חד פאזי"
+label_size = "NORMAL_BOLD"
+tab_id = "kavua_house_tab"
+setting_name = "2_month_base_1_phase"
+
+[node name="custom_label4" parent="VList" unique_id=373031599 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "רכיבי תשלום קבוע"
+label_color = "WHITE"
+label_size = "NORMAL_BOLD"
+
+[node name="Panel" type="Panel" parent="VList" unique_id=1969286738]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_type_variation = &"PanelUnder"
+
+[node name="HList" type="HBoxContainer" parent="VList/Panel" unique_id=850747441]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="kavua_haluka" parent="VList/Panel/HList" unique_id=245835850 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+theme_override_font_sizes/font_size = 24
+text = "₪ 18.40"
+label_color = "PRIMARY"
+label_size = "NORMAL_BOLD"
+
+[node name="Control" type="Control" parent="VList/Panel/HList" unique_id=439888121]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="custom_label" parent="VList/Panel/HList" unique_id=841907668 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("5_seil0")
+theme_override_font_sizes/font_size = 24
+text = "תשלום קבוע - חלוקה"
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="PanelWithIcon" parent="VList/Panel/HList" unique_id=1539567322 instance=ExtResource("2_amcpq")]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+icon = ExtResource("6_xilq6")
+as_button = false
+hide_bg = false
+
+[node name="Panel2" type="Panel" parent="VList" unique_id=470761064]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_type_variation = &"PanelUnder"
+
+[node name="HList" type="HBoxContainer" parent="VList/Panel2" unique_id=1157581689]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="kavua_aspaka" parent="VList/Panel2/HList" unique_id=663773114 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+theme_override_font_sizes/font_size = 24
+text = "₪ 22.10"
+label_color = "PRIMARY"
+label_size = "NORMAL_BOLD"
+
+[node name="Control" type="Control" parent="VList/Panel2/HList" unique_id=398309703]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="custom_label" parent="VList/Panel2/HList" unique_id=534248622 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("5_seil0")
+theme_override_font_sizes/font_size = 24
+text = "תשלום קבוע - הספקה"
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="PanelWithIcon" parent="VList/Panel2/HList" unique_id=6081489 instance=ExtResource("2_amcpq")]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+icon = ExtResource("7_50q0j")
+as_button = false
+hide_bg = false
+
+[node name="Panel3" type="Panel" parent="VList" unique_id=1025196864]
+custom_minimum_size = Vector2(0, 170)
+layout_mode = 2
+theme_type_variation = &"PanelUnder"
+
+[node name="HList" type="HBoxContainer" parent="VList/Panel3" unique_id=1787758520]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="hint_text" parent="VList/Panel3/HList" unique_id=1120034897 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("5_seil0")
+theme_override_font_sizes/font_size = 24
+text = "הסכום מחושב לפי מספר הימים שעברו מאז התשלום האחרון.
+הערך מבוסס על חודש או חודשיים, בהתאם לסוג הלקוח שנבחר."
+autowrap_mode = 2
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="PanelWithIcon" parent="VList/Panel3/HList" unique_id=1380093736 instance=ExtResource("2_amcpq")]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+icon = ExtResource("8_0da2o")
+as_button = false
+hide_bg = true
+
+[node name="custom_label5" parent="VList" unique_id=226396416 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "חלוקת חשבון"
+label_color = "WHITE"
+label_size = "NORMAL_BOLD"
+
+[node name="DevisionList" type="HBoxContainer" parent="VList" unique_id=1168212258]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+
+[node name="CustomPrice" parent="VList/DevisionList" unique_id=2050433280 instance=ExtResource("4_frxxt")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 2
+tab_name = "סכום קבוע"
+label_size = "NORMAL_BOLD"
+tab_id = "kavua_house_halukat_tab"
+setting_name = "CUSTOM"
+
+[node name="PercentPrice" parent="VList/DevisionList" unique_id=1646801283 instance=ExtResource("4_frxxt")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 2
+tab_name = "אחוז"
+label_size = "NORMAL_BOLD"
+tab_id = "kavua_house_halukat_tab"
+setting_name = "PERCENT"
+
+[node name="PartPrice" parent="VList/DevisionList" unique_id=1405229117 instance=ExtResource("4_frxxt")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 2
+tab_name = "חלק מהחשבון"
+label_size = "NORMAL_BOLD"
+tab_id = "kavua_house_halukat_tab"
+setting_name = "DIV_PART"
+
+[node name="NoChangePrice" parent="VList/DevisionList" unique_id=1440551206 instance=ExtResource("4_frxxt")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 2
+tab_name = "ללא חלוקה"
+label_size = "NORMAL_BOLD"
+tab_id = "kavua_house_halukat_tab"
+setting_name = "NO_DIVISION"
+
+[node name="Percentage" type="Panel" parent="VList" unique_id=434430265]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_type_variation = &"PanelUnder"
+
+[node name="HList" type="HBoxContainer" parent="VList/Percentage" unique_id=856192795]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="percent_div_value" parent="VList/Percentage/HList" unique_id=246965233 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+theme_override_font_sizes/font_size = 48
+text = "25%"
+label_color = "PRIMARY"
+label_size = "INPUT_BOLD"
+
+[node name="Control" type="Control" parent="VList/Percentage/HList" unique_id=1307486536]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="custom_label" parent="VList/Percentage/HList" unique_id=1648618596 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("5_seil0")
+theme_override_font_sizes/font_size = 24
+text = "אחוז"
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="KavuaPrice" type="Panel" parent="VList" unique_id=1339065190]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_type_variation = &"PanelUnder"
+
+[node name="HList" type="HBoxContainer" parent="VList/KavuaPrice" unique_id=148094351]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="custom_div_value" parent="VList/KavuaPrice/HList" unique_id=1786961109 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+theme_override_font_sizes/font_size = 48
+text = "₪ 50"
+label_color = "PRIMARY"
+label_size = "INPUT_BOLD"
+
+[node name="Control" type="Control" parent="VList/KavuaPrice/HList" unique_id=337245361]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="custom_label" parent="VList/KavuaPrice/HList" unique_id=1461132832 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("5_seil0")
+theme_override_font_sizes/font_size = 24
+text = "סכום קבוע"
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="PartPrice" type="Panel" parent="VList" unique_id=585872088]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_type_variation = &"PanelUnder"
+
+[node name="HList" type="HBoxContainer" parent="VList/PartPrice" unique_id=1525640126]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="custom_div_value5" parent="VList/PartPrice/HList" unique_id=406438853 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_seil0")
+theme_override_font_sizes/font_size = 24
+text = "דיירים"
+label_color = "WHITE"
+label_size = "NORMAL"
+
+[node name="custom_div_value4" parent="VList/PartPrice/HList" unique_id=1522462689 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+theme_override_font_sizes/font_size = 48
+text = "4"
+label_color = "PRIMARY"
+label_size = "INPUT_BOLD"
+
+[node name="custom_div_value3" parent="VList/PartPrice/HList" unique_id=1595722574 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_seil0")
+theme_override_font_sizes/font_size = 24
+text = "מתוך"
+label_color = "WHITE"
+label_size = "NORMAL"
+
+[node name="custom_div_value2" parent="VList/PartPrice/HList" unique_id=1197409973 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_seil0")
+theme_override_font_sizes/font_size = 32
+text = "1"
+label_color = "WHITE"
+label_size = "NORMAL_TITLE"
+
+[node name="custom_div_value" parent="VList/PartPrice/HList" unique_id=1699479121 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_seil0")
+theme_override_font_sizes/font_size = 24
+text = "אני דייר"
+label_color = "WHITE"
+label_size = "NORMAL"
+
+[node name="Control" type="Control" parent="VList/PartPrice/HList" unique_id=201637097]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="custom_label" parent="VList/PartPrice/HList" unique_id=793617887 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("5_seil0")
+theme_override_font_sizes/font_size = 24
+text = "חלק מחשבון"
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="Total" type="Panel" parent="VList" unique_id=2081962829]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme_type_variation = &"PanelUnder"
+
+[node name="TotalList" type="VBoxContainer" parent="VList/Total" unique_id=135138715]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="HList" type="HBoxContainer" parent="VList/Total/TotalList" unique_id=1128008979]
+layout_mode = 2
+alignment = 2
+
+[node name="custom_label2" parent="VList/Total/TotalList/HList" unique_id=461701383 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+theme_override_font_sizes/font_size = 24
+text = "37"
+label_color = "PRIMARY"
+label_size = "NORMAL_BOLD"
+
+[node name="Control" type="Control" parent="VList/Total/TotalList/HList" unique_id=729855213]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="custom_label" parent="VList/Total/TotalList/HList" unique_id=1032733133 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("5_seil0")
+theme_override_font_sizes/font_size = 24
+text = "ימים מאז תשלום אחרון"
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="Spacer" parent="VList/Total/TotalList" unique_id=1940210848 instance=ExtResource("9_amcpq")]
+layout_mode = 2
+
+[node name="HList2" type="HBoxContainer" parent="VList/Total/TotalList" unique_id=565965058]
+layout_mode = 2
+alignment = 2
+
+[node name="custom_label2" parent="VList/Total/TotalList/HList2" unique_id=1019482198 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+theme_override_font_sizes/font_size = 24
+text = "₪ 50"
+label_color = "PRIMARY"
+label_size = "NORMAL_BOLD"
+
+[node name="Control" type="Control" parent="VList/Total/TotalList/HList2" unique_id=1097342722]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="custom_label" parent="VList/Total/TotalList/HList2" unique_id=160818522 instance=ExtResource("4_lo5t6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("5_seil0")
+theme_override_font_sizes/font_size = 24
+text = "תשלום קבוע יחסי לתקופה"
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="HList2" type="HBoxContainer" parent="VList" unique_id=281663918]
+layout_mode = 2
+
+[node name="CancelBtn" parent="VList/HList2" unique_id=1626528086 instance=ExtResource("10_lo5t6")]
+layout_mode = 2
+size_flags_horizontal = 3
+title = "ביטול"
+
+[node name="CalcBtn2" parent="VList/HList2" unique_id=1955931531 instance=ExtResource("8_mioah")]
+layout_mode = 2
+size_flags_horizontal = 3
+title = "שמור"
+
+[connection signal="resized" from="VList" to="." method="_on_v_list_resized"]
+[connection signal="resized" from="VList/Panel3/HList/hint_text" to="." method="_on_hint_text_resized"]
+[connection signal="resized" from="VList/Total/TotalList" to="." method="_on_total_list_resized"]

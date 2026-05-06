@@ -1,0 +1,217 @@
+[gd_scene format=3 uid="uid://duvi0qkwx6bel"]
+
+[ext_resource type="Theme" uid="uid://0ggo4uawe5ve" path="res://themes/main_theme.tres" id="1_qups4"]
+[ext_resource type="PackedScene" uid="uid://dh864icn07y43" path="res://scenes/components/custom_label.tscn" id="1_v6j3e"]
+[ext_resource type="Texture2D" uid="uid://ffrue0eacuat" path="res://assets/icons/info_icon.png" id="3_vei3g"]
+[ext_resource type="Script" uid="uid://43w8amjf2qpk" path="res://scenes/pages/TabManager.gd" id="7_71cb8"]
+[ext_resource type="PackedScene" uid="uid://byo3sjn1qup6k" path="res://scenes/pages/calc_page.tscn" id="7_qups4"]
+[ext_resource type="PackedScene" uid="uid://bsq8ms3fdamp4" path="res://scenes/components/bottom_tab_btn.tscn" id="8_w7beu"]
+[ext_resource type="Texture2D" uid="uid://6jqcodoq477r" path="res://assets/icons/func_icon.png" id="9_cevi6"]
+[ext_resource type="Texture2D" uid="uid://7w6ma28i4e84" path="res://assets/icons/calculator_icon.png" id="10_dxc2c"]
+[ext_resource type="Script" uid="uid://pvllko5emmmw" path="res://scenes/pages/popup_handler.gd" id="12_vei3g"]
+[ext_resource type="Shader" uid="uid://cqpp7elke8es0" path="res://shaders/blur.gdshader" id="12_xnd7a"]
+[ext_resource type="Script" uid="uid://b7np68k74x1dg" path="res://scenes/components/app_loader.gd" id="14_vei3g"]
+[ext_resource type="Script" uid="uid://bugtb1np0gxr6" path="res://scenes/pages/focus_exiter.gd" id="15_xtuy0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4m6h1"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+draw_center = false
+border_width_bottom = 2
+border_color = Color(0.11764706, 0.16078432, 0.23137255, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6j3e"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.07058824, 0.101960786, 0.16078432, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vp251"]
+shader = ExtResource("12_xnd7a")
+shader_parameter/blur_amount = 3.5600002641
+shader_parameter/mix_amount = 0.5600000266
+shader_parameter/color_over = Color(0, 0, 0, 1)
+
+[node name="MainWindow" type="Control" unique_id=1173432708]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_qups4")
+
+[node name="FocusExiter" type="Control" parent="." unique_id=306784399]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("15_xtuy0")
+
+[node name="VList" type="VBoxContainer" parent="." unique_id=151017785]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TopScreen" type="Control" parent="VList" unique_id=1597678467]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="BG" type="Panel" parent="VList/TopScreen" unique_id=92600943]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4m6h1")
+
+[node name="HList" type="HBoxContainer" parent="VList/TopScreen" unique_id=1966240818]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Control2" type="Control" parent="VList/TopScreen/HList" unique_id=310564177]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="custom_label" parent="VList/TopScreen/HList" unique_id=779062733 instance=ExtResource("1_v6j3e")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+label_color = "PRIMARY"
+
+[node name="Control" type="Control" parent="VList/TopScreen/HList" unique_id=626498170]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Control3" type="Control" parent="VList/TopScreen/HList" unique_id=1022051297]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Mergin" type="MarginContainer" parent="VList" unique_id=1050465218]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 0
+
+[node name="TabManager" type="ScrollContainer" parent="VList/Mergin" unique_id=138778951]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("7_71cb8")
+
+[node name="CalcPage" parent="VList/Mergin/TabManager" unique_id=616357585 instance=ExtResource("7_qups4")]
+layout_mode = 2
+
+[node name="BottomBar" type="Control" parent="VList" unique_id=327224380]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="BG" type="Panel" parent="VList/BottomBar" unique_id=924484414]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6j3e")
+
+[node name="HList" type="HBoxContainer" parent="VList/BottomBar" unique_id=116830934]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = -20.0
+grow_horizontal = 2
+
+[node name="InfoTab" parent="VList/BottomBar/HList" unique_id=1717840193 instance=ExtResource("8_w7beu")]
+layout_mode = 2
+size_flags_horizontal = 3
+icon = ExtResource("3_vei3g")
+
+[node name="CalcTab" parent="VList/BottomBar/HList" unique_id=840715977 instance=ExtResource("8_w7beu")]
+layout_mode = 2
+size_flags_horizontal = 3
+icon = ExtResource("9_cevi6")
+title = "איך לחשב"
+
+[node name="MainTab" parent="VList/BottomBar/HList" unique_id=273546112 instance=ExtResource("8_w7beu")]
+layout_mode = 2
+size_flags_horizontal = 3
+icon = ExtResource("10_dxc2c")
+title = "מחשבון"
+default_selected = true
+
+[node name="PopupHandler" type="Control" parent="." unique_id=1324173010]
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_vei3g")
+
+[node name="ColorRect" type="ColorRect" parent="PopupHandler" unique_id=805314316]
+material = SubResource("ShaderMaterial_vp251")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PopupContainer" type="Control" parent="PopupHandler" unique_id=1082452423]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AppLoader" type="Node" parent="." unique_id=639957247]
+script = ExtResource("14_vei3g")
+
+[connection signal="BtnPressed" from="VList/BottomBar/HList/InfoTab" to="VList/Mergin/TabManager" method="_on_info_tab_btn_pressed"]
+[connection signal="BtnPressed" from="VList/BottomBar/HList/CalcTab" to="VList/Mergin/TabManager" method="_on_calc_tab_btn_pressed"]
+[connection signal="BtnPressed" from="VList/BottomBar/HList/MainTab" to="VList/Mergin/TabManager" method="_on_main_tab_btn_pressed"]

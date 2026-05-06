@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cedjb7bdti2nt"]
+
+[ext_resource type="Script" uid="uid://bnpdowyikronu" path="res://scenes/components/recipe_item.gd" id="1_hmvf5"]
+[ext_resource type="PackedScene" uid="uid://dh864icn07y43" path="res://scenes/components/custom_label.tscn" id="1_rwan4"]
+[ext_resource type="FontFile" uid="uid://dg65kpdsjo02k" path="res://assets/fonts/NotoSansHebrew-Regular.ttf" id="2_hmvf5"]
+
+[node name="RecipeItem" type="HBoxContainer" unique_id=1857711768]
+mouse_filter = 2
+script = ExtResource("1_hmvf5")
+
+[node name="value" parent="." unique_id=779062733 instance=ExtResource("1_rwan4")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "500 קוט״ש"
+label_color = "WHITE"
+label_size = "NORMAL_BOLD"
+
+[node name="Control" type="Control" parent="." unique_id=1178766702]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="title" parent="." unique_id=1314680536 instance=ExtResource("1_rwan4")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("2_hmvf5")
+theme_override_font_sizes/font_size = 24
+text = "צריכה"
+label_color = "NEUTRAL"
+label_size = "NORMAL"
