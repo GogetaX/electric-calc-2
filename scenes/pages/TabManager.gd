@@ -12,6 +12,7 @@ func _on_main_tab_btn_pressed() -> void:
 	var c = calc_page.instantiate()
 	margin_container.add_theme_constant_override("margin_right",0)
 	add_child(c)
+	c.OnAppLoaded()
 	
 
 func RemoveAndFreeTabs():

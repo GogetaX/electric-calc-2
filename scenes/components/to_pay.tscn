@@ -5,9 +5,13 @@
 [ext_resource type="FontFile" uid="uid://dg65kpdsjo02k" path="res://assets/fonts/NotoSansHebrew-Regular.ttf" id="2_vtnym"]
 [ext_resource type="PackedScene" uid="uid://cedjb7bdti2nt" path="res://scenes/components/recipe_item.tscn" id="3_gwwbf"]
 [ext_resource type="PackedScene" uid="uid://dfdb2bv3xj3nd" path="res://scenes/components/spacer.tscn" id="4_gwwbf"]
+[ext_resource type="PackedScene" uid="uid://cifw75w5hoqp2" path="res://scenes/components/panel_with_icon.tscn" id="6_u5xku"]
+[ext_resource type="Texture2D" uid="uid://nl82m3vd5mdy" path="res://assets/icons/save_icon.png" id="7_wgpy0"]
+[ext_resource type="Texture2D" uid="uid://bc844ojpauxxr" path="res://assets/icons/share_icon.png" id="8_wgpy0"]
+[ext_resource type="Texture2D" uid="uid://ffrue0eacuat" path="res://assets/icons/info_icon.png" id="9_8pl4r"]
 
 [node name="ToPay" type="Panel" unique_id=2091667190]
-custom_minimum_size = Vector2(0, 300)
+custom_minimum_size = Vector2(0, 380)
 offset_right = 767.0
 offset_bottom = 300.0
 mouse_filter = 2
@@ -36,7 +40,7 @@ horizontal_alignment = 1
 label_color = "NEUTRAL"
 label_size = "NORMAL"
 
-[node name="custom_label2" parent="VList" unique_id=1331019805 instance=ExtResource("1_35i4w")]
+[node name="tot_pay" parent="VList" unique_id=1331019805 instance=ExtResource("1_35i4w")]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
 theme_override_font_sizes/font_size = 48
@@ -52,22 +56,89 @@ layout_mode = 2
 layout_mode = 2
 mouse_filter = 2
 
-[node name="RecipeItem" parent="VList/Recipe" unique_id=1857711768 instance=ExtResource("3_gwwbf")]
+[node name="kw_tot" parent="VList/Recipe" unique_id=1857711768 instance=ExtResource("3_gwwbf")]
 layout_mode = 2
 
-[node name="RecipeItem2" parent="VList/Recipe" unique_id=1645245571 instance=ExtResource("3_gwwbf")]
+[node name="pay_kw" parent="VList/Recipe" unique_id=1645245571 instance=ExtResource("3_gwwbf")]
 layout_mode = 2
 title = "עלות צריכה"
 value_str = "₪321.60"
 
-[node name="RecipeItem3" parent="VList/Recipe" unique_id=642840998 instance=ExtResource("3_gwwbf")]
+[node name="pay_kavua" parent="VList/Recipe" unique_id=642840998 instance=ExtResource("3_gwwbf")]
 layout_mode = 2
 title = "תשלום קבוע"
 value_str = "₪0.00"
 
-[node name="RecipeItem4" parent="VList/Recipe" unique_id=821720507 instance=ExtResource("3_gwwbf")]
+[node name="maam" parent="VList/Recipe" unique_id=821720507 instance=ExtResource("3_gwwbf")]
 layout_mode = 2
 title = "מע״מ"
 value_str = "כלול (18%)"
 
+[node name="days_passed" parent="VList/Recipe" unique_id=645293665 instance=ExtResource("3_gwwbf")]
+layout_mode = 2
+title = "עבור ימים"
+value_str = "10"
+
+[node name="Info" type="VBoxContainer" parent="VList" unique_id=1772135626]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Spacer" parent="VList/Info" unique_id=1591026037 instance=ExtResource("4_gwwbf")]
+layout_mode = 2
+
+[node name="customer_type" parent="VList/Info" unique_id=1484182736 instance=ExtResource("3_gwwbf")]
+layout_mode = 2
+title = "לקוח"
+value_str = "ביתי"
+
+[node name="haspaka_type" parent="VList/Info" unique_id=1000265695 instance=ExtResource("3_gwwbf")]
+layout_mode = 2
+title = "הספקה"
+value_str = "דו חודשי - חד פאזי"
+
+[node name="from_to_dates" parent="VList/Info" unique_id=559909752 instance=ExtResource("3_gwwbf")]
+layout_mode = 2
+title = "תאריכים"
+value_str = "1.5.26 → 1.6.26"
+
+[node name="from_to_kw" parent="VList/Info" unique_id=519288106 instance=ExtResource("3_gwwbf")]
+layout_mode = 2
+title = "שעון"
+value_str = "200 → 500"
+
+[node name="haluka_type" parent="VList/Info" unique_id=14257308 instance=ExtResource("3_gwwbf")]
+layout_mode = 2
+title = "חלוקה"
+value_str = "20%"
+
+[node name="Spacer2" parent="VList" unique_id=1834329921 instance=ExtResource("4_gwwbf")]
+layout_mode = 2
+
+[node name="VBox" type="HBoxContainer" parent="VList" unique_id=1083281206]
+layout_mode = 2
+alignment = 1
+
+[node name="SaveBtn" parent="VList/VBox" unique_id=1539567322 instance=ExtResource("6_u5xku")]
+layout_mode = 2
+label_color = "PRIMARY"
+icon = ExtResource("7_wgpy0")
+as_button = true
+hide_bg = true
+
+[node name="ShareBtn" parent="VList/VBox" unique_id=1417094553 instance=ExtResource("6_u5xku")]
+layout_mode = 2
+label_color = "PRIMARY"
+icon = ExtResource("8_wgpy0")
+as_button = true
+hide_bg = true
+
+[node name="ExpandRetract" parent="VList/VBox" unique_id=27912174 instance=ExtResource("6_u5xku")]
+layout_mode = 2
+label_color = "PRIMARY"
+icon = ExtResource("9_8pl4r")
+as_button = true
+hide_bg = true
+
 [connection signal="resized" from="VList" to="." method="_on_v_list_resized"]
+[connection signal="OnPress" from="VList/VBox/SaveBtn" to="." method="_on_save_btn_on_press"]
+[connection signal="OnPress" from="VList/VBox/ExpandRetract" to="." method="_on_expand_retract_on_press"]

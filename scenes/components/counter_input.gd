@@ -21,7 +21,7 @@ func _ready() -> void:
 			$VList/hint.label_color = "PRIMARY"
 		"LAST_TIME":
 			$VList/title.text = "קריאה קודמת"
-			$VList/hint.text = "נשלף מהחודש הקודם"
+			$VList/hint.text = "נשלף מהתשלום האחרון"
 			$VList/hint.label_color = "NEUTRAL"
 
 
@@ -47,3 +47,9 @@ func _on_line_edit_format_value_submited(value: String) -> void:
 	
 func GetValue():
 	return float($VList/LineEdit.text)
+	
+func SetInput(input_float:float):
+	if int(input_float) == -1:
+		$VList/LineEdit.text = "?"
+	else:
+		$VList/LineEdit.text = str(input_float)

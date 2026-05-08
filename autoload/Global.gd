@@ -2,6 +2,8 @@ extends Node
 
 const SECONDS_PER_DAY := 86400
 
+var has_hebrew_month = ""
+
 
 func DictToDateStr(date_dict:Dictionary)->String:
 	var res = str(date_dict.get("day",0))+"."+str(date_dict.get("month",0))+"."+str(date_dict.get("year",0))
@@ -76,3 +78,87 @@ func get_days_in_month(year: int, month: int) -> int:
 
 func is_leap_year(year: int) -> bool:
 	return year % 400 == 0 or (year % 4 == 0 and year % 100 != 0)
+
+func date_dict_to_string(d: Dictionary) -> String:
+	if not d.has("year") or not d.has("month") or not d.has("day"):
+		return ""
+
+	var day := int(d.day)
+	var month := int(d.month)
+	var year := int(d.year) % 100 # last 2 digits
+
+	var day_str := str(day).pad_zeros(2)
+	var month_str := str(month).pad_zeros(2)
+	var year_str := str(year).pad_zeros(2)
+
+	return "%s.%s.%s" % [day_str, month_str, year_str]
+
+func DivitionToStr(div_data_dict:Dictionary)->String:
+	#division_data: { "type": "NO_DIVISION", "PART_DIV_VALUE": 3, "PERCENT_VALUE": 25, "CUSTOM_PRICE": 50 }
+	match div_data_dict.type:
+		"NO_DIVISION":
+			return "ללא חלוקה"
+		"DIV_PART":
+			return "חלוקה " + "1/"+str(div_data_dict.PART_DIV_VALUE).pad_decimals(0)
+		"PERCENT":
+			return "אחוז " + str(div_data_dict.PERCENT_VALUE)+"%"
+		"CUSTOM":
+			return "קבוע ₪"+str(div_data_dict.CUSTOM_PRICE)
+		_:
+			print_debug("Unknown div: ",div_data_dict.type)
+			return "?"
+
+func KavuaTypeToStr(kavua_type:String)->String:
+	match kavua_type:
+		"2_month_base_1_phase":
+			return "דו חודשי - חד פאזי"
+		"2_month_base_3_phase":
+			return "דו חודשי - תלת פאזי"
+		"single_month_customer":
+			return "חד חודשי"
+	return "?"
+
+func CategoryToStr(category_type:String)->String:
+	match category_type:
+		"HOUSE":
+			return "ביתי"
+		"DEFAULT":
+			return "כללי"
+		"CUSTOM":
+			return "מותאם"
+	return "?"
+
+func get_today_hebrew_month_year() -> String:
+	var d := Time.get_date_dict_from_system()
+
+	var months := [
+		"", # index 0
+		"ינואר", "פברואר", "מרץ", "אפריל",
+		"מאי", "יוני", "יולי", "אוגוסט",
+		"ספטמבר", "אוקטובר", "נובמבר", "דצמבר"
+	]
+
+	return "%s %d" % [months[d.month], d.year]
+
+func get_hebrew_month_from_api(callback):
+	var d := Time.get_date_dict_from_system()
+
+	var url := "https://www.hebcal.com/converter?cfg=json&gy=%d&gm=%d&gd=%d" % [
+		d.year, d.month, d.day
+	]
+
+	var http := HTTPRequest.new()
+	add_child(http)
+	
+	http.request_completed.connect(func(_result, _response_code, _headers, body):
+		var json = JSON.parse_string(body.get_string_from_utf8())
+		if !is_instance_valid(callback):
+			Global.has_hebrew_month = "חודש " + json.hebrew
+			return
+		if json && json.has("hebrew"):
+			callback.call("חודש " + json.hebrew) # hm = Hebrew month
+		else:
+			callback.call("")
+	)
+
+	http.request(url)

@@ -157,8 +157,6 @@ label_size = "NORMAL"
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 icon = ExtResource("6_xilq6")
-as_button = false
-hide_bg = false
 
 [node name="Panel2" type="Panel" parent="VList" unique_id=470761064]
 custom_minimum_size = Vector2(0, 80)
@@ -203,8 +201,6 @@ label_size = "NORMAL"
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 icon = ExtResource("7_50q0j")
-as_button = false
-hide_bg = false
 
 [node name="Panel3" type="Panel" parent="VList" unique_id=1025196864]
 custom_minimum_size = Vector2(0, 170)
@@ -239,8 +235,8 @@ label_size = "NORMAL"
 [node name="PanelWithIcon" parent="VList/Panel3/HList" unique_id=1380093736 instance=ExtResource("2_amcpq")]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
+label_color = "PRIMARY"
 icon = ExtResource("8_0da2o")
-as_button = false
 hide_bg = true
 
 [node name="custom_label5" parent="VList" unique_id=226396416 instance=ExtResource("4_lo5t6")]

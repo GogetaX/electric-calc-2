@@ -136,48 +136,54 @@ tab_name = "כללי"
 layout_mode = 2
 
 [node name="HouseTab" type="HBoxContainer" parent="." unique_id=1259775094]
-custom_minimum_size = Vector2(0, 150)
+custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 20
 
 [node name="Kavua" parent="HouseTab" unique_id=96954626 instance=ExtResource("7_1i3ub")]
 layout_mode = 2
+label_color = "NEUTRAL"
 value_str = "₪0.00"
 with_selector = true
 
 [node name="KotashPrice" parent="HouseTab" unique_id=991715205 instance=ExtResource("7_1i3ub")]
 layout_mode = 2
+label_color = "WHITE"
 title = "מחיר לקוט״ש"
 
 [node name="DefaultTab" type="HBoxContainer" parent="." unique_id=1679735816]
-custom_minimum_size = Vector2(0, 150)
+custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 20
 
 [node name="Kavua" parent="DefaultTab" unique_id=104498213 instance=ExtResource("7_1i3ub")]
 layout_mode = 2
+label_color = "NEUTRAL"
 value_str = "₪0.00"
 with_selector = true
 
 [node name="KotashPrice" parent="DefaultTab" unique_id=732773021 instance=ExtResource("7_1i3ub")]
 layout_mode = 2
+label_color = "WHITE"
 title = "מחיר לקוט״ש"
 
 [node name="CustomTab" type="HBoxContainer" parent="." unique_id=819062546]
-custom_minimum_size = Vector2(0, 150)
+custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 20
 
 [node name="Kavua" parent="CustomTab" unique_id=1222257083 instance=ExtResource("7_1i3ub")]
 layout_mode = 2
+label_color = "NEUTRAL"
 value_str = "₪0.00"
 with_selector = true
 
 [node name="KotashPrice" parent="CustomTab" unique_id=1108179935 instance=ExtResource("7_1i3ub")]
 layout_mode = 2
+label_color = "WHITE"
 title = "מחיר לקוט״ש"
 
 [node name="CalcBtn" parent="." unique_id=1626528086 instance=ExtResource("8_bvqmj")]
@@ -227,3 +233,4 @@ layout_mode = 2
 [connection signal="SettingPressed" from="HouseTab/Kavua" to="." method="_on_kavua_setting_pressed"]
 [connection signal="SettingPressed" from="DefaultTab/Kavua" to="." method="_on_kavua_setting_pressed"]
 [connection signal="SettingPressed" from="CustomTab/Kavua" to="." method="_on_kavua_setting_pressed"]
+[connection signal="OnPress" from="CalcBtn" to="." method="_on_calc_btn_on_press"]

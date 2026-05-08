@@ -44,15 +44,11 @@ layout_mode = 2
 [node name="value" parent="VList/HBoxContainer" unique_id=1538308929 instance=ExtResource("1_vukyh")]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 48
 text = "₪0.6432"
 horizontal_alignment = 0
-label_color = "WHITE"
-label_size = "INPUT_BOLD"
 
 [node name="TypeSelectorBtn" parent="VList/HBoxContainer" unique_id=1539567322 instance=ExtResource("4_axugx")]
-visible = false
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 icon = ExtResource("5_5wvfh")
 as_button = true

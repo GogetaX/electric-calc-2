@@ -121,7 +121,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="custom_label" parent="VList/Panel/HList" unique_id=1996767299 instance=ExtResource("2_e338h")]
+[node name="cur_date" parent="VList/Panel/HList" unique_id=1996767299 instance=ExtResource("2_e338h")]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_jrlq2")
@@ -135,12 +135,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="custom_label2" parent="VList/Panel/HList" unique_id=18629906 instance=ExtResource("2_e338h")]
+[node name="hebrew_month" parent="VList/Panel/HList" unique_id=18629906 instance=ExtResource("2_e338h")]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
 theme_override_fonts/font = ExtResource("3_jrlq2")
 theme_override_font_sizes/font_size = 24
-text = "חודש חשבון"
+text = ""
 label_color = "NEUTRAL"
 label_size = "NORMAL"
 

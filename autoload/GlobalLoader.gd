@@ -20,6 +20,9 @@ func LoadData():
 func LoadDataFromSave():
 	print_debug("TODO: Trying to load data from save")
 	
+func SaveHistory(history_data:Dictionary):
+	save_data.history.append(history_data)
+	
 func ImportDataFromOldFile():
 	if FileAccess.file_exists(OLD_SAVE_DATA):
 		var f = FileAccess.open(OLD_SAVE_DATA,FileAccess.READ)
@@ -32,18 +35,14 @@ func ImportDataFromOldFile():
 				var pay_total_str = x[3]
 				var kw_cur = x[4]
 				var payment_date_dict = StrDateToDict(payment_date_str)
-				var history_data = {"prev_date":{},"last_date":payment_date_dict,"last_pay":pay_total_str,"prev_kw":kw_last,"cur_kw":kw_cur}
+				var history_data = {"from_old_save":true,"prev_date":{},"last_date":payment_date_dict,"last_pay":pay_total_str,"prev_kw":kw_last,"cur_kw":kw_cur}
 				save_data["history"].append(history_data)
-		print_debug("TODO: remove file: ",OLD_SAVE_DATA," when finished importing")
 	
 	if FileAccess.file_exists(OLD_SETTING_DATA):
 		var f = FileAccess.open(OLD_SETTING_DATA,FileAccess.READ)
 		var s = f.get_var()
 		f.close()
-		print("settings: ")
-		print(s)
 		save_data["cur_selected"] = s["e-type"]
-		print_debug("TODO: remove file: ",OLD_SETTING_DATA," when finished importing")
 	#e-type == "HOUSE","DEFAU:T","CUSTOM"
 
 func StrDateToDict(str_date:String)->Dictionary:
@@ -68,9 +67,33 @@ func CreateEmptyData():
 	
 	return res
 
-func GetHistory():
-	return save_data.history
-
+func GetSettings(data_name:String)->Dictionary:
+	match data_name:
+		"HOUSE":
+			return save_data.house_settings
+		"DEFAULT":
+			return save_data.default_settings
+		"CUSTOM":
+			return save_data.custom_settings
+		_:
+			print_debug("Unknown data name: ",data_name)
+			return save_data.house_settings
+			
+func GetHistory(last_history := -1):
+	if last_history == -1:
+		var res = []
+		for x in range(save_data.history.size()-1,-1,-1):
+			res.append(save_data.history[x])
+		return res
+	else:
+		var res = []
+		var counter = 0
+		for x in range(save_data.history.size()-1,-1,-1):
+			res.append(save_data.history[x])
+			counter += 1
+			if counter >= last_history:
+				return res
+		return res
 func GetCurSelectedTab():
 	return save_data.cur_selected
 

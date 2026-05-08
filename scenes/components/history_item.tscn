@@ -3,15 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://dh864icn07y43" path="res://scenes/components/custom_label.tscn" id="1_bflrk"]
 [ext_resource type="Script" uid="uid://bl28hktt6lvu2" path="res://scenes/components/history_item.gd" id="1_g8cuk"]
 [ext_resource type="FontFile" uid="uid://dg65kpdsjo02k" path="res://assets/fonts/NotoSansHebrew-Regular.ttf" id="2_g8cuk"]
-[ext_resource type="Texture2D" uid="uid://c6d84hqe4slb1" path="res://assets/icons/date_icon.png" id="3_2ltkv"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_71cb8"]
-bg_color = Color(0.121891595, 0.20960307, 0.16571042, 1)
-border_color = Color(0.15686275, 0.2627451, 0.21568628, 1)
-corner_radius_top_left = 50
-corner_radius_top_right = 50
-corner_radius_bottom_right = 50
-corner_radius_bottom_left = 50
+[ext_resource type="PackedScene" uid="uid://cifw75w5hoqp2" path="res://scenes/components/panel_with_icon.tscn" id="4_2ltkv"]
+[ext_resource type="Texture2D" uid="uid://doixt7js80ok" path="res://assets/icons/recepie_icon.png" id="4_g8cuk"]
 
 [node name="HistoryItem" type="Panel" unique_id=1802322898]
 custom_minimum_size = Vector2(0, 110)
@@ -86,41 +79,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="VList2" type="VBoxContainer" parent="HList" unique_id=775034770]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="prev_date" parent="HList/VList2" unique_id=215657408 instance=ExtResource("1_bflrk")]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
-text = "12.05.2024"
-label_color = "WHITE"
-label_size = "NORMAL_BOLD"
-
-[node name="prev_kw" parent="HList/VList2" unique_id=292499435 instance=ExtResource("1_bflrk")]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
-theme_override_fonts/font = ExtResource("2_g8cuk")
-theme_override_font_sizes/font_size = 24
-text = "150"
-label_color = "NEUTRAL"
-label_size = "NORMAL"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HList" unique_id=1474145429]
-layout_mode = 2
-
-[node name="right_arrow" parent="HList/HBoxContainer" unique_id=1172204189 instance=ExtResource("1_bflrk")]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
-theme_override_fonts/font = ExtResource("2_g8cuk")
-theme_override_font_sizes/font_size = 32
-text = "→"
-vertical_alignment = 1
-label_color = "NEUTRAL"
-label_size = "NORMAL_TITLE"
-
 [node name="VList4" type="VBoxContainer" parent="HList" unique_id=1813719837]
 layout_mode = 2
 mouse_filter = 2
@@ -138,7 +96,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
 theme_override_fonts/font = ExtResource("2_g8cuk")
 theme_override_font_sizes/font_size = 24
-text = "600"
+text = "600 → 800"
 label_color = "NEUTRAL"
 label_size = "NORMAL"
 
@@ -146,25 +104,7 @@ label_size = "NORMAL"
 layout_mode = 2
 mouse_filter = 2
 
-[node name="PanelWithIcon" type="Panel" parent="HList/VList3" unique_id=1464742654]
-custom_minimum_size = Vector2(80, 80)
+[node name="PanelWithIcon" parent="HList/VList3" unique_id=1539567322 instance=ExtResource("4_2ltkv")]
 layout_mode = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_71cb8")
-
-[node name="TextureRect" type="TextureRect" parent="HList/VList3/PanelWithIcon" unique_id=1949234328]
-self_modulate = Color(1, 0.7254902, 0.37254903, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 15.0
-offset_top = 15.0
-offset_right = -15.0
-offset_bottom = -15.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("3_2ltkv")
-expand_mode = 1
-stretch_mode = 5
+icon = ExtResource("4_g8cuk")
+as_button = true

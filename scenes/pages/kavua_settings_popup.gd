@@ -102,6 +102,7 @@ func UpdateDevision():
 	$VList/Percentage.visible = false
 	$VList/KavuaPrice.visible = false
 	$VList/PartPrice.visible = false
+	await get_tree().process_frame
 	var cur_div = GetSelectedDivData()
 	match cur_div:
 		"PERCENT":

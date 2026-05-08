@@ -60,9 +60,8 @@ mouse_filter = 2
 
 [node name="PanelWithIcon" parent="VList/HList/VBoxContainer" unique_id=29907083 instance=ExtResource("4_paehj")]
 layout_mode = 2
+label_color = "PRIMARY"
 icon = ExtResource("3_24nkp")
-as_button = false
-hide_bg = false
 
 [node name="result_bar" type="Panel" parent="VList" unique_id=1933987296]
 custom_minimum_size = Vector2(0, 70)

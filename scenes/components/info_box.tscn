@@ -32,7 +32,6 @@ offset_bottom = 500.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_p2roq")
 script = ExtResource("1_x1w51")
-hide_right_side = null
 
 [node name="VList" type="VBoxContainer" parent="." unique_id=1749446870]
 layout_mode = 1
@@ -62,8 +61,7 @@ label_color = "WHITE"
 [node name="icon" parent="VList/HList" unique_id=1539567322 instance=ExtResource("2_x1w51")]
 layout_mode = 2
 mouse_filter = 2
-as_button = false
-hide_bg = false
+label_color = "PRIMARY"
 
 [node name="desc" parent="VList" unique_id=954895710 instance=ExtResource("1_p2roq")]
 layout_mode = 2

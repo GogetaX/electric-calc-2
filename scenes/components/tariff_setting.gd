@@ -3,6 +3,15 @@ extends Panel
 
 signal SettingPressed()
 
+@export_enum("PRIMARY","PRIMARY_INVERTED","SECONDARY","TERITIARY","NEUTRAL","WHITE") var label_color := "SECONDARY":
+	set(value):
+		label_color = value
+		if is_node_ready():
+			_ready()
+			
+	get:
+		return label_color
+		
 @export var title := "תשלום קבוע":
 	set(value):
 		title = value
@@ -33,6 +42,7 @@ func _ready() -> void:
 	$VList/title_label.text = title
 	$VList/HBoxContainer/value.text = value_str
 	$VList/HBoxContainer/TypeSelectorBtn.visible = with_selector
+	$VList/HBoxContainer/value.label_color = label_color
 	if !Engine.is_editor_hint() && !_already_inited:
 		_already_inited = true
 		$VList/HBoxContainer/TypeSelectorBtn.OnPress.connect(OnSettingPressed)

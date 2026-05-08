@@ -7,19 +7,33 @@ var cur_selected_last_month = {}
 func _ready() -> void:
 	GlobalSignals.AppLoaded.connect(OnAppLoaded)
 	GlobalSignals.UpdateValues.connect(OnUpdateValues)
+	GlobalSignals.UpdateHistory.connect(OnUpdateHistory)
+	$ToPay.SetAsHidden()
 	
-func OnAppLoaded():
+func OnUpdateHistory():
+	UpdateHistory()
+	
+func UpdateHistory():
 	ClearAllHistory()
-	var history = GlobalLoader.GetHistory()
+	var history = GlobalLoader.GetHistory(2)
 	for x in history:
 		var h = history_item.instantiate()
 		$HistoryList.add_child(h)
 		h.InitItem(x)
+		
+func OnAppLoaded():
+	UpdateHistory()
+		#$HistoryList.move_child(h,0)
 	var closest_month = GlobalLoader.get_closest_last_date_item(GlobalLoader.save_data.history)
+	
 	if !closest_month.is_empty():
 		cur_selected_last_month = closest_month.get("last_date",Time.get_date_dict_from_system())
+		$HList/OldKW.SetInput(closest_month.get("prev_kw",0))
+		$HList/NewKW.SetInput(-1)
 	else:
 		cur_selected_last_month = Time.get_date_dict_from_system()
+		$HList/OldKW.SetInput(0)
+		$HList/NewKW.SetInput(-1)
 	match GlobalLoader.GetCurSelectedTab():
 		"HOUSE":
 			$TaarifSelector/HomeTab.SetAsSelected()
@@ -33,7 +47,9 @@ func OnAppLoaded():
 	UpdateKWCalc()
 	
 func OnUpdateValues():
+	SyncSelectedTab()
 	UpdateKWCalc()
+	$ToPay.AnimateHide()
 	
 func SyncSelectedTab():
 	$HouseTab.visible = false
@@ -71,10 +87,7 @@ func CalcKavua(data_type:String):
 			data_to_work_with = GlobalLoader.save_data.custom_settings
 	
 	var db_data = GlobalCalcDb.GetData(data_type)
-	print("data_to_work_with")
-	print(data_to_work_with)
-	print("db_data")
-	print(db_data)
+
 	var kavua_division = db_data.kavua_division[data_to_work_with.phase_type]
 	var kavua_supply = db_data.kavua_supply[data_to_work_with.phase_type]
 	if data_to_work_with.phase_type != "single_month_customer":
@@ -120,17 +133,65 @@ func _on_custom_tab_on_press() -> void:
 
 
 func _on_kavua_setting_pressed() -> void:
-	GlobalSignals.ShowPopup.emit("KAVUA_CALC",{"type":"HOUSE"})
+	GlobalSignals.ShowPopup.emit("KAVUA_CALC",{"type":GlobalLoader.GetCurSelectedTab()})
 
 
 func _on_old_kw_value_submited(_value: float) -> void:
+	$ToPay.AnimateHide()
 	UpdateKWCalc()
 
 
 func _on_new_kw_value_submited(_value: float) -> void:
+	$ToPay.AnimateHide()
 	UpdateKWCalc()
 	
 func UpdateKWCalc():
 	var old_value = $HList/OldKW.GetValue()
 	var new_value = $HList/NewKW.GetValue()
 	$ResultInfo.UpdateResult(str(new_value)+" - "+str(old_value)+" =",str(new_value-old_value)+" Kwh")
+
+
+func _on_calc_btn_on_press() -> void:
+	var pay_data = GeneratePayData()
+	$ToPay.AnimateShow()
+	$ToPay.InitData(pay_data)
+
+func GeneratePayData():
+	var res = {}
+	#calc KW
+	var old_value = $HList/OldKW.GetValue()
+	var new_value = $HList/NewKW.GetValue()
+	var tot_kw = abs(new_value - old_value)
+	var selected_tab = GlobalLoader.GetCurSelectedTab()
+	var electric_data = GlobalCalcDb.GetData(selected_tab)
+	var saved_settings = GlobalLoader.GetSettings(selected_tab)
+	
+	#Output recepie
+	var pay_for_kw = (tot_kw * electric_data.every_kw)/100.0
+	var pay_for_kw_with_maam = pay_for_kw + (pay_for_kw * GlobalCalcDb.MAAM)
+	var with_maam = saved_settings.with_maam
+	var kavua = CalcKavua(selected_tab)
+	var days_passed = Global.GetDaysPassed(cur_selected_last_month,Time.get_date_dict_from_system())
+	
+	res["tot_kw"] = tot_kw
+	res["from_date"] = cur_selected_last_month.duplicate(true)
+	res["to_date"] = Time.get_date_dict_from_system()
+	res["phase_type"] = saved_settings.phase_type
+	res["division_data"] = saved_settings.division_data.duplicate(true)
+	res["pay_for_kw"] = pay_for_kw
+	res["pay_for_kw_with_maam"] = pay_for_kw_with_maam
+	res["with_maam"] = with_maam
+	res["kavua"] = kavua
+	res["from_kw"] = old_value
+	res["to_kw"] = new_value
+	res["kavua_with_maam"] = kavua + (kavua * GlobalCalcDb.MAAM)
+	res["days_passed"] = days_passed
+	res["category"] = selected_tab
+	res["electric_data"] = electric_data.duplicate(true)
+	if with_maam:
+		res["tot_pay"] = res["pay_for_kw_with_maam"] + res["kavua_with_maam"]
+	else:
+		res["tot_pay"] = res["pay_for_kw"] + res["kavua"]
+
+	return res
+	

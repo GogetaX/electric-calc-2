@@ -1,28 +1,41 @@
 extends Panel
 
+var cur_data = {}
+
+
 func InitItem(item_data:Dictionary):
-	print(item_data)
-	if !item_data.prev_date.is_empty():
-		$HList/VList2/prev_date.text = Global.DictToDateStr(item_data.prev_date)
+	cur_data = item_data
+	if item_data.has("from_old_save") && item_data.from_old_save:
+		InitOldData()
 	else:
-		$HList/HBoxContainer/right_arrow.vertical_alignment = 2
-		$HList/VList2/prev_date.text = ""
-	
-	if !item_data.last_date.is_empty():
-		$HList/VList4/last_date.text = Global.DictToDateStr(item_data.last_date)
+		InitNewData()
+		
+
+func InitNewData():
+	print("new data: ")
+	for x in cur_data:
+		print(x,": ",cur_data[x])
+		
+	$HList/VList/HBoxContainer/calculated_kw.text = str(cur_data.tot_kw).pad_decimals(2) + " קוט״ש"
+	$HList/VList4/last_date.text = Global.DictToDateStr(cur_data.to_date)
+	$HList/VList/HBoxContainer/days_passed.text = str(cur_data.days_passed).pad_decimals(0)+" יום"
+	$HList/VList4/last_kw.text = str(cur_data.from_kw).pad_decimals(0)+" → "+str(cur_data.to_kw).pad_decimals(0)
+	$HList/VList/last_pay.text = "₪" + str(cur_data.tot_pay).pad_decimals(2)
+func InitOldData():
+	if !cur_data.last_date.is_empty():
+		$HList/VList4/last_date.text = Global.DictToDateStr(cur_data.last_date)
 	else:
 		$HList/VList4/last_date.text = ""
 	
-	$HList/VList/last_pay.text = item_data.last_pay
-	$HList/VList2/prev_kw.text = str(item_data.prev_kw).pad_decimals(0)
-	$HList/VList4/last_kw.text = str(item_data.cur_kw).pad_decimals(0)
+	$HList/VList/last_pay.text = cur_data.last_pay
+	$HList/VList4/last_kw.text = str(cur_data.prev_kw).pad_decimals(0)+" → "+str(cur_data.cur_kw).pad_decimals(0)
 	
-	if item_data.prev_date.is_empty() || item_data.last_date.is_empty():
+	if cur_data.prev_date.is_empty() || cur_data.last_date.is_empty():
 		$HList/VList/HBoxContainer/days_passed.text = ""
 		$HList/VList/HBoxContainer/date_spacer.text = ""
 	else:
-		var days_passed = Global.GetDaysPassed(item_data.prev_date,item_data.last_date)
+		var days_passed = Global.GetDaysPassed(cur_data.prev_date,cur_data.last_date)
 		$HList/VList/HBoxContainer/days_passed.text = str(days_passed).pad_decimals(0)+"יום "
 		
-	var calculateed_kw = item_data.cur_kw - item_data.prev_kw
-	$HList/VList/HBoxContainer/calculated_kw.text = str(calculateed_kw).pad_decimals(0) + " קוט״ש"
+	var calculateed_kw = cur_data.cur_kw - cur_data.prev_kw
+	$HList/VList/HBoxContainer/calculated_kw.text = str(calculateed_kw).pad_decimals(2) + " קוט״ש"
