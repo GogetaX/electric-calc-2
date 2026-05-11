@@ -22,7 +22,8 @@ func _on_admob_initialization_completed(_status_data: InitializationStatus) -> v
 
 
 func _on_admob_banner_ad_loaded(ad_id: AdInfo, _response_info: ResponseInfo) -> void:
-	$Admob.show_banner_ad(ad_id)
+	GlobalSignals.AdjustBottomBar.emit(ad_id.get_measured_height())
+	$Admob.show_banner_ad(ad_id.get_ad_id())
 
 
 func _on_admob_app_open_ad_loaded(_ad_id: AdInfo, _response_info: ResponseInfo) -> void:
@@ -43,7 +44,10 @@ func LoadAds():
 	elif OS.get_name() == "iOS":
 		request.set_ad_unit_id("ca-app-pub-6225081745698787/2239330690")
 	$Admob.load_app_open_ad(request)
+	#Banner Request
 	request = LoadAdRequest.new()
+	request.set_ad_position(LoadAdRequest.AdPosition.BOTTOM)
+	request.set_ad_size(LoadAdRequest.RequestedAdSize.ADAPTIVE)
 	if OS.get_name() == "Android":
 		request.set_ad_unit_id("ca-app-pub-6225081745698787/6196931041")
 	elif OS.get_name() == "iOS":

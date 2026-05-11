@@ -3,6 +3,7 @@
 [ext_resource type="Theme" uid="uid://0ggo4uawe5ve" path="res://themes/main_theme.tres" id="1_qups4"]
 [ext_resource type="PackedScene" uid="uid://dh864icn07y43" path="res://scenes/components/custom_label.tscn" id="1_v6j3e"]
 [ext_resource type="Texture2D" uid="uid://ffrue0eacuat" path="res://assets/icons/info_icon.png" id="3_vei3g"]
+[ext_resource type="Script" uid="uid://dmw5c1nhgwhdb" path="res://scenes/pages/bottom_bar.gd" id="6_wa8lu"]
 [ext_resource type="Script" uid="uid://43w8amjf2qpk" path="res://scenes/pages/TabManager.gd" id="7_71cb8"]
 [ext_resource type="PackedScene" uid="uid://byo3sjn1qup6k" path="res://scenes/pages/calc_page.tscn" id="7_qups4"]
 [ext_resource type="Texture2D" uid="uid://bk8ealicllnsi" path="res://assets/icons/history_counter_icon.png" id="7_vp251"]
@@ -16,6 +17,7 @@
 [ext_resource type="Script" uid="uid://d1qogp4bl11q5" path="res://addons/AdmobPlugin/Admob.gd" id="14_xtuy0"]
 [ext_resource type="Script" uid="uid://bymkn55lrmsix" path="res://addons/SharePlugin/Share.gd" id="15_vmfva"]
 [ext_resource type="Script" uid="uid://bugtb1np0gxr6" path="res://scenes/pages/focus_exiter.gd" id="15_xtuy0"]
+[ext_resource type="PackedScene" uid="uid://5euau603yuxg" path="res://scenes/plugins/screenshot_maker.tscn" id="18_46rqb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4m6h1"]
 content_margin_left = 0.0
@@ -142,9 +144,10 @@ script = ExtResource("7_71cb8")
 layout_mode = 2
 
 [node name="BottomBar" type="Control" parent="VList" unique_id=327224380]
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 mouse_filter = 2
+script = ExtResource("6_wa8lu")
 
 [node name="BG" type="Panel" parent="VList/BottomBar" unique_id=924484414]
 layout_mode = 1
@@ -162,8 +165,9 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 offset_left = 20.0
-offset_top = 10.0
+offset_top = 20.0
 offset_right = -20.0
+offset_bottom = 50.0
 grow_horizontal = 2
 
 [node name="HistoryTab" parent="VList/BottomBar/HList" unique_id=2042906925 instance=ExtResource("8_w7beu")]
@@ -242,24 +246,30 @@ android_debug_banner_id = "ca-app-pub-6225081745698787/6196931041"
 android_debug_interstitial_id = ""
 android_debug_rewarded_id = ""
 android_debug_rewarded_interstitial_id = ""
-android_debug_app_open_id = ""
-android_debug_native_id = "ca-app-pub-6225081745698787/8405283791"
+android_debug_app_open_id = "ca-app-pub-6225081745698787/8405283791"
+android_debug_native_id = ""
 android_real_banner_id = "ca-app-pub-6225081745698787/6196931041"
-android_real_native_id = "ca-app-pub-6225081745698787/8405283791"
+android_real_app_open_id = "ca-app-pub-6225081745698787/8405283791"
 ios_debug_application_id = "ca-app-pub-6225081745698787~6257647354"
 ios_real_application_id = "ca-app-pub-6225081745698787~6257647354"
 ios_debug_banner_id = "ca-app-pub-6225081745698787/8665099093"
 ios_debug_interstitial_id = ""
 ios_debug_rewarded_id = ""
 ios_debug_rewarded_interstitial_id = ""
-ios_debug_app_open_id = ""
-ios_debug_native_id = "ca-app-pub-6225081745698787/2239330690"
+ios_debug_app_open_id = "ca-app-pub-6225081745698787/2239330690"
+ios_debug_native_id = ""
 ios_real_banner_id = "ca-app-pub-6225081745698787/8665099093"
-ios_real_native_id = "ca-app-pub-6225081745698787/2239330690"
+ios_real_app_open_id = "ca-app-pub-6225081745698787/2239330690"
 att_enabled = true
 att_text = "המידע משמש להצגת פרסומות מותאמות אישית ולשיפור חוויית השימוש באפליקציה."
 metadata/_custom_type_script = "uid://d1qogp4bl11q5"
 
+[node name="ScreenshotMaker" parent="Plugins" unique_id=2120175243 instance=ExtResource("18_46rqb")]
+visible = false
+mouse_filter = 2
+screenshot_type = "ANDROID_PHONE_PORTRAIT"
+
+[connection signal="resized" from="VList/BottomBar/HList" to="VList/BottomBar" method="_on_h_list_resized"]
 [connection signal="BtnPressed" from="VList/BottomBar/HList/HistoryTab" to="VList/Mergin/TabManager" method="_on_history_tab_btn_pressed"]
 [connection signal="BtnPressed" from="VList/BottomBar/HList/InfoTab" to="VList/Mergin/TabManager" method="_on_info_tab_btn_pressed"]
 [connection signal="BtnPressed" from="VList/BottomBar/HList/CalcTab" to="VList/Mergin/TabManager" method="_on_calc_tab_btn_pressed"]

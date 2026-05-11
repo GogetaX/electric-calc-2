@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://5euau603yuxg"]
+
+[ext_resource type="Script" uid="uid://buwyx2f1ambvy" path="res://scenes/plugins/screenshot_maker.gd" id="1_hlr7e"]
+
+[node name="ScreenshotMaker" type="Control" unique_id=2120175243]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hlr7e")

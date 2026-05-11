@@ -175,6 +175,5 @@ func capture_control(control: Control):
 	match OS.get_name():
 		"Android","iOS":
 			var absolute = OS.get_user_data_dir() + SHARED_FILE_PATH.replace("user://","/")
-			print("path: ",absolute)
 			share_plugin.share_image(absolute,"חישוב חשמל שלי","","")
 	
