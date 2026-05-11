@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://6xtiwpfwfue5" path="res://scenes/components/custom_label.gd" id="1_q156h"]
 
 [node name="custom_label" type="Label" unique_id=779062733]
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(0.9607843, 0.61960787, 0.043137256, 1)
 theme_override_fonts/font = ExtResource("1_oyk4i")
 theme_override_font_sizes/font_size = 40

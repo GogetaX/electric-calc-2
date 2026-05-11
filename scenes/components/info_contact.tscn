@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://gpinx6ttym2l"]
+
+[ext_resource type="PackedScene" uid="uid://dh864icn07y43" path="res://scenes/components/custom_label.tscn" id="1_fk4gf"]
+[ext_resource type="Script" uid="uid://pcec82j5s5p3" path="res://scenes/components/info_contact.gd" id="1_nfb4x"]
+[ext_resource type="PackedScene" uid="uid://cifw75w5hoqp2" path="res://scenes/components/panel_with_icon.tscn" id="2_nfb4x"]
+[ext_resource type="Texture2D" uid="uid://blio4fqak3v33" path="res://assets/icons/email_icon.png" id="3_4efhk"]
+[ext_resource type="FontFile" uid="uid://dg65kpdsjo02k" path="res://assets/fonts/NotoSansHebrew-Regular.ttf" id="4_tdn13"]
+[ext_resource type="PackedScene" uid="uid://dfdb2bv3xj3nd" path="res://scenes/components/spacer.tscn" id="5_i5nij"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p2roq"]
+bg_color = Color(0.11764706, 0.16078432, 0.23137255, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.15686275, 0.2627451, 0.21568628, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="Gradient" id="Gradient_p2roq"]
+offsets = PackedFloat32Array(0, 0.22891566, 0.76506025, 1)
+colors = PackedColorArray(0.24313726, 0.3137255, 0.43137255, 0, 0.24184266, 0.313079, 0.42955896, 1, 0.24313726, 0.3137255, 0.43137255, 1, 0.24313726, 0.3137255, 0.43137255, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_x1w51"]
+gradient = SubResource("Gradient_p2roq")
+
+[node name="info_contact" type="Panel" unique_id=230727522]
+custom_minimum_size = Vector2(0, 600)
+offset_right = 736.0
+offset_bottom = 703.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_p2roq")
+script = ExtResource("1_nfb4x")
+
+[node name="VList" type="VBoxContainer" parent="." unique_id=608222170]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="HList" type="HBoxContainer" parent="VList" unique_id=1719975294]
+layout_mode = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="title" parent="VList/HList" unique_id=779062733 instance=ExtResource("1_fk4gf")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "יצירת קשר עם המתכנת"
+label_color = "WHITE"
+
+[node name="icon" parent="VList/HList" unique_id=1539567322 instance=ExtResource("2_nfb4x")]
+layout_mode = 2
+mouse_filter = 2
+label_color = "PRIMARY"
+icon = ExtResource("3_4efhk")
+
+[node name="desc" parent="VList" unique_id=16568585 instance=ExtResource("1_fk4gf")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("4_tdn13")
+theme_override_font_sizes/font_size = 24
+text = "יש לכם רעיון לשיפור, הצעה לפיצ'ר חדש או שמצאתם תקלה?
+אשמח לשמוע מכם!"
+autowrap_mode = 2
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="desc2" parent="VList" unique_id=1750046469 instance=ExtResource("1_fk4gf")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.44313726, 0.4745098, 0.4509804, 1)
+theme_override_fonts/font = ExtResource("4_tdn13")
+theme_override_font_sizes/font_size = 24
+text = "ניתן ליצור קשר דרך האימייל ולשתף:
+• הצעות ושיפורים
+• בקשות לתכונות חדשות
+• דיווח על בעיות או תקלות
+
+האימייל יאפשר לי לשפר את האפליקציה עבורכם"
+label_color = "NEUTRAL"
+label_size = "NORMAL"
+
+[node name="Spacer" parent="VList" unique_id=1940210848 instance=ExtResource("5_i5nij")]
+layout_mode = 2
+texture = SubResource("GradientTexture1D_x1w51")
+
+[node name="HList2" type="HBoxContainer" parent="VList" unique_id=1208285914]
+layout_mode = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="icon" parent="VList/HList2" unique_id=1482291383 instance=ExtResource("2_nfb4x")]
+layout_mode = 2
+label_color = "PRIMARY"
+icon = ExtResource("3_4efhk")
+as_button = true
+hide_bg = true
+
+[connection signal="resized" from="VList" to="." method="_on_v_list_resized"]
+[connection signal="OnPress" from="VList/HList2/icon" to="." method="_on_icon_on_press"]

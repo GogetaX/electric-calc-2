@@ -26,9 +26,9 @@ colors = PackedColorArray(0.24313726, 0.3137255, 0.43137255, 0, 0.24184266, 0.31
 gradient = SubResource("Gradient_p2roq")
 
 [node name="info_box" type="Panel" unique_id=1481590261]
-custom_minimum_size = Vector2(0, 292)
+custom_minimum_size = Vector2(0, 252)
 offset_right = 837.0
-offset_bottom = 500.0
+offset_bottom = 252.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_p2roq")
 script = ExtResource("1_x1w51")

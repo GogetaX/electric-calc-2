@@ -5,8 +5,10 @@ const MAAM = 0.18
 var home_pay_data = []
 var default_pay_data = []
 var custom_pay_data = []
+var maam_last_update = {}
 
 func _ready() -> void:
+	maam_last_update = {"day":1,"month":1,"year":2025}
 	#התעריפים בתוקף מ-01.01.2026
 	home_pay_data.append(
 		{"every_kw":54.51, #באגורות לכל קוט"ש

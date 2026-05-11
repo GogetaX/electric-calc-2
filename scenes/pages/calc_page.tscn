@@ -95,15 +95,6 @@ layout_mode = 2
 layout_mode = 2
 mouse_filter = 2
 
-[node name="custom_label2" parent="HList4" unique_id=779062733 instance=ExtResource("4_rcgvo")]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
-theme_override_fonts/font = ExtResource("5_eoxoe")
-theme_override_font_sizes/font_size = 32
-text = "עריכת תעריפים"
-label_color = "PRIMARY"
-label_size = "NORMAL_TITLE"
-
 [node name="Control" type="Control" parent="HList4" unique_id=840241274]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -136,7 +127,7 @@ tab_name = "כללי"
 layout_mode = 2
 
 [node name="HouseTab" type="HBoxContainer" parent="." unique_id=1259775094]
-custom_minimum_size = Vector2(0, 110)
+custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 20
@@ -153,7 +144,7 @@ label_color = "WHITE"
 title = "מחיר לקוט״ש"
 
 [node name="DefaultTab" type="HBoxContainer" parent="." unique_id=1679735816]
-custom_minimum_size = Vector2(0, 110)
+custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 20
@@ -170,33 +161,35 @@ label_color = "WHITE"
 title = "מחיר לקוט״ש"
 
 [node name="CustomTab" type="HBoxContainer" parent="." unique_id=819062546]
-custom_minimum_size = Vector2(0, 110)
+custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 20
 
-[node name="Kavua" parent="CustomTab" unique_id=1222257083 instance=ExtResource("7_1i3ub")]
+[node name="Kavua" parent="CustomTab" unique_id=1108179935 instance=ExtResource("7_1i3ub")]
 layout_mode = 2
 label_color = "NEUTRAL"
-value_str = "₪0.00"
 with_selector = true
 
-[node name="KotashPrice" parent="CustomTab" unique_id=1108179935 instance=ExtResource("7_1i3ub")]
+[node name="CustomKotashPrice" parent="CustomTab" unique_id=1788342350 instance=ExtResource("7_1i3ub")]
 layout_mode = 2
 label_color = "WHITE"
-title = "מחיר לקוט״ש"
+title = "מחיר 100 לקוט״ש"
+value_str = "₪64.32"
+is_edit = true
 
 [node name="CalcBtn" parent="." unique_id=1626528086 instance=ExtResource("8_bvqmj")]
 layout_mode = 2
 
 [node name="ToPay" parent="." unique_id=2091667190 instance=ExtResource("9_52u66")]
+custom_minimum_size = Vector2(0, 700)
 layout_mode = 2
 
 [node name="HList3" type="HBoxContainer" parent="." unique_id=1512778750]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="custom_label2" parent="HList3" unique_id=610399364 instance=ExtResource("4_rcgvo")]
+[node name="show_history" parent="HList3" unique_id=610399364 instance=ExtResource("4_rcgvo")]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
 theme_override_fonts/font = ExtResource("5_eoxoe")
@@ -204,6 +197,7 @@ theme_override_font_sizes/font_size = 32
 text = "הצג הכל"
 label_color = "PRIMARY"
 label_size = "NORMAL_TITLE"
+is_button = true
 
 [node name="Control" type="Control" parent="HList3" unique_id=1095170037]
 layout_mode = 2
@@ -233,4 +227,6 @@ layout_mode = 2
 [connection signal="SettingPressed" from="HouseTab/Kavua" to="." method="_on_kavua_setting_pressed"]
 [connection signal="SettingPressed" from="DefaultTab/Kavua" to="." method="_on_kavua_setting_pressed"]
 [connection signal="SettingPressed" from="CustomTab/Kavua" to="." method="_on_kavua_setting_pressed"]
+[connection signal="OnValueSubmited" from="CustomTab/CustomKotashPrice" to="." method="_on_custom_kotash_price_on_value_submited"]
 [connection signal="OnPress" from="CalcBtn" to="." method="_on_calc_btn_on_press"]
+[connection signal="BtnPress" from="HList3/show_history" to="." method="_on_show_history_btn_press"]

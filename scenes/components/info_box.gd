@@ -71,6 +71,7 @@ func _ready() -> void:
 	$VList/HList2/custom_label5.visible = !hide_right_side
 	$VList/HList2/value.visible = !hide_right_side
 	$VList/HList2/custom_label6.visible = !hide_right_side
+	await get_tree().process_frame
 	_on_v_list_resized()
 	
 func _on_v_list_resized() -> void:

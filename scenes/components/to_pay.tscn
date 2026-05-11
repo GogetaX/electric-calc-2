@@ -9,13 +9,27 @@
 [ext_resource type="Texture2D" uid="uid://nl82m3vd5mdy" path="res://assets/icons/save_icon.png" id="7_wgpy0"]
 [ext_resource type="Texture2D" uid="uid://bc844ojpauxxr" path="res://assets/icons/share_icon.png" id="8_wgpy0"]
 [ext_resource type="Texture2D" uid="uid://ffrue0eacuat" path="res://assets/icons/info_icon.png" id="9_8pl4r"]
+[ext_resource type="Texture2D" uid="uid://cipi404buvy2r" path="res://assets/icons/close_icon.png" id="10_anarm"]
 
 [node name="ToPay" type="Panel" unique_id=2091667190]
 custom_minimum_size = Vector2(0, 380)
 offset_right = 767.0
-offset_bottom = 300.0
-mouse_filter = 2
+offset_bottom = 733.0
+mouse_filter = 1
 script = ExtResource("1_vtnym")
+
+[node name="ClosePopupBtn" parent="." unique_id=1177255860 instance=ExtResource("6_u5xku")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -80.0
+offset_right = 0.0
+grow_horizontal = 0
+label_color = "PRIMARY"
+icon = ExtResource("10_anarm")
+as_button = true
+hide_bg = true
 
 [node name="VList" type="VBoxContainer" parent="." unique_id=1416369765]
 layout_mode = 1
@@ -139,6 +153,18 @@ icon = ExtResource("9_8pl4r")
 as_button = true
 hide_bg = true
 
+[node name="MadeBy" type="HBoxContainer" parent="VList" unique_id=218772478]
+layout_mode = 2
+alignment = 1
+
+[node name="custom_label" parent="VList/MadeBy" unique_id=1440470173 instance=ExtResource("1_35i4w")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.21960784, 0.14117648, 1)
+text = "מחשבון חשמל ישראל"
+label_color = "PRIMARY_INVERTED"
+
+[connection signal="OnPress" from="ClosePopupBtn" to="." method="_on_close_popup_btn_on_press"]
 [connection signal="resized" from="VList" to="." method="_on_v_list_resized"]
 [connection signal="OnPress" from="VList/VBox/SaveBtn" to="." method="_on_save_btn_on_press"]
+[connection signal="OnPress" from="VList/VBox/ShareBtn" to="." method="_on_share_btn_on_press"]
 [connection signal="OnPress" from="VList/VBox/ExpandRetract" to="." method="_on_expand_retract_on_press"]

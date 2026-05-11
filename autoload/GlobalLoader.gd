@@ -4,27 +4,44 @@ const OLD_SETTING_DATA = "user://Settings.ini"
 
 const NEW_SAVE_DATA = "user://db_v2.ini"
 
-const DEFAULT_DIVITION_SETTINGS = {"with_maam":true,"division_data":{"type":"NO_DIVISION","PART_DIV_VALUE":3,"PERCENT_VALUE":25,"CUSTOM_PRICE":50},"phase_type":"2_month_base_1_phase"}
+const DEFAULT_DIVITION_SETTINGS = {"with_maam":true,"division_data":{"type":"NO_DIVISION","PART_DIV_VALUE":3,"PERCENT_VALUE":25,"CUSTOM_PRICE":50},"phase_type":"2_month_base_1_phase","custom_price_per_100_kw":-1}
 
 var save_data = {}
 
+var old_data_imported = false
+
 func LoadData():
+	save_data = CreateEmptyData()
 	if FileAccess.file_exists(NEW_SAVE_DATA):
 		LoadDataFromSave()
 		return
-	save_data = CreateEmptyData()
+	
 	if FileAccess.file_exists(OLD_SAVE_DATA):
 		ImportDataFromOldFile()
 		return
 	
 func LoadDataFromSave():
-	print_debug("TODO: Trying to load data from save")
+	var file := FileAccess.open(NEW_SAVE_DATA, FileAccess.READ)
+	if file == null:
+		push_error("Failed to read save file")
+		return
+	
+	var json_text := file.get_as_text()
+	file.close()
+	
+	var result = JSON.parse_string(json_text)
+	
+	if typeof(result) != TYPE_DICTIONARY:
+		return
+	save_data = result
 	
 func SaveHistory(history_data:Dictionary):
 	save_data.history.append(history_data)
+	SyncSave()
 	
 func ImportDataFromOldFile():
 	if FileAccess.file_exists(OLD_SAVE_DATA):
+		old_data_imported = true
 		var f = FileAccess.open(OLD_SAVE_DATA,FileAccess.READ)
 		var s = f.get_var()
 		f.close()
@@ -37,12 +54,16 @@ func ImportDataFromOldFile():
 				var payment_date_dict = StrDateToDict(payment_date_str)
 				var history_data = {"from_old_save":true,"prev_date":{},"last_date":payment_date_dict,"last_pay":pay_total_str,"prev_kw":kw_last,"cur_kw":kw_cur}
 				save_data["history"].append(history_data)
-	
+		DirAccess.remove_absolute(OLD_SAVE_DATA)
+		
 	if FileAccess.file_exists(OLD_SETTING_DATA):
+		old_data_imported = true
 		var f = FileAccess.open(OLD_SETTING_DATA,FileAccess.READ)
 		var s = f.get_var()
 		f.close()
 		save_data["cur_selected"] = s["e-type"]
+		DirAccess.remove_absolute(OLD_SETTING_DATA)
+	SyncSave()
 	#e-type == "HOUSE","DEFAU:T","CUSTOM"
 
 func StrDateToDict(str_date:String)->Dictionary:
@@ -102,12 +123,15 @@ func SetCurTab(tab_name:String):
 	SyncSave()
 	
 func SyncSave():
-	print_debug("TODO: Save to file: ",NEW_SAVE_DATA)
+	var f = FileAccess.open(NEW_SAVE_DATA,FileAccess.WRITE)
+	var json_text = JSON.stringify(save_data,"\t")
+	f.store_string(json_text)
+	f.close()
 
 func get_closest_last_date_item(items: Array) -> Dictionary:
 	if save_data.history.is_empty():
 		return Time.get_date_dict_from_system()
-
+	
 	var today := Time.get_date_dict_from_system()
 	var today_unix := Time.get_unix_time_from_datetime_dict({
 		"year": today.year,
@@ -122,27 +146,36 @@ func get_closest_last_date_item(items: Array) -> Dictionary:
 	var closest_diff := INF
 
 	for item in items:
-		if not item.has("last_date"):
-			continue
+		if item.has("last_date") || item.has("to_date"):
+			var d : Dictionary = Time.get_date_dict_from_system()
+			if item.has("last_date"):
+				d = item.last_date
+			elif item.has("to_date"):
+				d = item.to_date
 
-		var d: Dictionary = item.last_date
+			if not d.has("year") or not d.has("month") or not d.has("day"):
+				continue
 
-		if not d.has("year") or not d.has("month") or not d.has("day"):
-			continue
+			var date_unix := Time.get_unix_time_from_datetime_dict({
+				"year": int(d.year),
+				"month": int(d.month),
+				"day": int(d.day),
+				"hour": 0,
+				"minute": 0,
+				"second": 0
+			})
 
-		var date_unix := Time.get_unix_time_from_datetime_dict({
-			"year": int(d.year),
-			"month": int(d.month),
-			"day": int(d.day),
-			"hour": 0,
-			"minute": 0,
-			"second": 0
-		})
+			var diff = abs(today_unix - date_unix)
 
-		var diff = abs(today_unix - date_unix)
-
-		if diff < closest_diff:
-			closest_diff = diff
-			closest_item = item
+			if diff < closest_diff:
+				closest_diff = diff
+				closest_item = item
 
 	return closest_item
+
+func SetCustomPricePer100KW(price:float):
+	save_data.custom_settings.custom_price_per_100_kw = price
+	SyncSave()
+	
+func GetCustomPricePer100KW():
+	return save_data.custom_settings.custom_price_per_100_kw

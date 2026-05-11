@@ -1,13 +1,15 @@
 extends Node
 
 const SECONDS_PER_DAY := 86400
+const SHARED_FILE_PATH = "user://electric_calc.png"
 
 var has_hebrew_month = ""
 
+var cur_edit_node = null
+var last_edit_node = null
 
-func DictToDateStr(date_dict:Dictionary)->String:
-	var res = str(date_dict.get("day",0))+"."+str(date_dict.get("month",0))+"."+str(date_dict.get("year",0))
-	return res
+var share_plugin :Share = null
+
 
 func calculate_payment_by_days(monthly_payment: float, from_date: Dictionary, to_date: Dictionary) -> float:
 	var from_unix := Time.get_unix_time_from_datetime_dict({
@@ -140,7 +142,8 @@ func get_today_hebrew_month_year() -> String:
 
 	return "%s %d" % [months[d.month], d.year]
 
-func get_hebrew_month_from_api(callback):
+func get_hebrew_month_from_api():
+	
 	var d := Time.get_date_dict_from_system()
 
 	var url := "https://www.hebcal.com/converter?cfg=json&gy=%d&gm=%d&gd=%d" % [
@@ -151,14 +154,27 @@ func get_hebrew_month_from_api(callback):
 	add_child(http)
 	
 	http.request_completed.connect(func(_result, _response_code, _headers, body):
+		
 		var json = JSON.parse_string(body.get_string_from_utf8())
-		if !is_instance_valid(callback):
-			Global.has_hebrew_month = "חודש " + json.hebrew
-			return
 		if json && json.has("hebrew"):
-			callback.call("חודש " + json.hebrew) # hm = Hebrew month
-		else:
-			callback.call("")
+			Global.has_hebrew_month = json.hebrew
+			GlobalSignals.UpdateHebrewMonth.emit()
 	)
 
 	http.request(url)
+
+func capture_control(control: Control):
+	var window_size = DisplayServer.window_get_size()
+	var viewport_size = get_viewport().get_visible_rect().size
+	var scale = Vector2(viewport_size.x / window_size.x,viewport_size.y / window_size.y)
+	#new method
+	#var region = Rect2(control.global_position.x, control.global_position.y, control.size.x, control.size.y)  # change the values around to suit your actual scene
+	var region = Rect2(control.global_position.x/scale.x,control.global_position.y/scale.y,control.size.x/scale.x,control.size.y/scale.y)
+	var image := get_viewport().get_texture().get_image().get_region(region)
+	image.save_png(SHARED_FILE_PATH)
+	match OS.get_name():
+		"Android","iOS":
+			var absolute = OS.get_user_data_dir() + SHARED_FILE_PATH.replace("user://","/")
+			print("path: ",absolute)
+			share_plugin.share_image(absolute,"חישוב חשמל שלי","","")
+	

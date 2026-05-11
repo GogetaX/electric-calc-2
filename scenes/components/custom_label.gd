@@ -1,6 +1,8 @@
 @tool
 extends Label
 
+signal BtnPress()
+
 @onready var font_normal = preload("res://assets/fonts/NotoSansHebrew-Regular.ttf")
 @onready var font_bold = preload("res://assets/fonts/NotoSansHebrew-Bold.ttf")
 
@@ -20,6 +22,8 @@ extends Label
 			_ready()
 	get:
 		return label_size
+		
+@export var is_button := false
 		
 func _ready() -> void:
 	match label_color:
@@ -55,4 +59,15 @@ func _ready() -> void:
 			add_theme_font_override("font",font_bold)
 		_:
 			print_debug("Unknown size: ",label_size)
+	if !Engine.is_editor_hint():
+		if is_button:
+			mouse_filter = Control.MOUSE_FILTER_PASS
+			GlobalBtn.AddBtnPress(self)
+			GlobalBtn.BtnPress.connect(OnBtnPress)
 	
+
+func OnBtnPress(control_node:Control):
+	if control_node != self:
+		return
+	GlobalBtn.AnimateBtnPressed(self)
+	BtnPress.emit()

@@ -5,12 +5,16 @@
 [ext_resource type="Texture2D" uid="uid://ffrue0eacuat" path="res://assets/icons/info_icon.png" id="3_vei3g"]
 [ext_resource type="Script" uid="uid://43w8amjf2qpk" path="res://scenes/pages/TabManager.gd" id="7_71cb8"]
 [ext_resource type="PackedScene" uid="uid://byo3sjn1qup6k" path="res://scenes/pages/calc_page.tscn" id="7_qups4"]
+[ext_resource type="Texture2D" uid="uid://bk8ealicllnsi" path="res://assets/icons/history_counter_icon.png" id="7_vp251"]
 [ext_resource type="PackedScene" uid="uid://bsq8ms3fdamp4" path="res://scenes/components/bottom_tab_btn.tscn" id="8_w7beu"]
 [ext_resource type="Texture2D" uid="uid://6jqcodoq477r" path="res://assets/icons/func_icon.png" id="9_cevi6"]
 [ext_resource type="Texture2D" uid="uid://7w6ma28i4e84" path="res://assets/icons/calculator_icon.png" id="10_dxc2c"]
 [ext_resource type="Script" uid="uid://pvllko5emmmw" path="res://scenes/pages/popup_handler.gd" id="12_vei3g"]
 [ext_resource type="Shader" uid="uid://cqpp7elke8es0" path="res://shaders/blur.gdshader" id="12_xnd7a"]
 [ext_resource type="Script" uid="uid://b7np68k74x1dg" path="res://scenes/components/app_loader.gd" id="14_vei3g"]
+[ext_resource type="Script" uid="uid://dm1k41wg7flgk" path="res://scenes/pages/plugins.gd" id="14_vmfva"]
+[ext_resource type="Script" uid="uid://d1qogp4bl11q5" path="res://addons/AdmobPlugin/Admob.gd" id="14_xtuy0"]
+[ext_resource type="Script" uid="uid://bymkn55lrmsix" path="res://addons/SharePlugin/Share.gd" id="15_vmfva"]
 [ext_resource type="Script" uid="uid://bugtb1np0gxr6" path="res://scenes/pages/focus_exiter.gd" id="15_xtuy0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4m6h1"]
@@ -162,6 +166,12 @@ offset_top = 10.0
 offset_right = -20.0
 grow_horizontal = 2
 
+[node name="HistoryTab" parent="VList/BottomBar/HList" unique_id=2042906925 instance=ExtResource("8_w7beu")]
+layout_mode = 2
+size_flags_horizontal = 3
+icon = ExtResource("7_vp251")
+title = "היסטוריה"
+
 [node name="InfoTab" parent="VList/BottomBar/HList" unique_id=1717840193 instance=ExtResource("8_w7beu")]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -212,6 +222,48 @@ mouse_filter = 2
 [node name="AppLoader" type="Node" parent="." unique_id=639957247]
 script = ExtResource("14_vei3g")
 
+[node name="Plugins" type="Node" parent="." unique_id=1912008455]
+script = ExtResource("14_vmfva")
+
+[node name="Share" type="Node" parent="Plugins" unique_id=2013880833]
+script = ExtResource("15_vmfva")
+metadata/_custom_type_script = "uid://bymkn55lrmsix"
+
+[node name="Admob" type="Node" parent="Plugins" unique_id=2036093174]
+script = ExtResource("14_xtuy0")
+is_real = true
+max_ad_content_rating = 1
+banner_position = 1
+banner_size = 3
+auto_show_on_resume = true
+android_debug_application_id = "ca-app-pub-6225081745698787~6777592963"
+android_real_application_id = "ca-app-pub-6225081745698787~6777592963"
+android_debug_banner_id = "ca-app-pub-6225081745698787/6196931041"
+android_debug_interstitial_id = ""
+android_debug_rewarded_id = ""
+android_debug_rewarded_interstitial_id = ""
+android_debug_app_open_id = ""
+android_debug_native_id = "ca-app-pub-6225081745698787/8405283791"
+android_real_banner_id = "ca-app-pub-6225081745698787/6196931041"
+android_real_native_id = "ca-app-pub-6225081745698787/8405283791"
+ios_debug_application_id = "ca-app-pub-6225081745698787~6257647354"
+ios_real_application_id = "ca-app-pub-6225081745698787~6257647354"
+ios_debug_banner_id = "ca-app-pub-6225081745698787/8665099093"
+ios_debug_interstitial_id = ""
+ios_debug_rewarded_id = ""
+ios_debug_rewarded_interstitial_id = ""
+ios_debug_app_open_id = ""
+ios_debug_native_id = "ca-app-pub-6225081745698787/2239330690"
+ios_real_banner_id = "ca-app-pub-6225081745698787/8665099093"
+ios_real_native_id = "ca-app-pub-6225081745698787/2239330690"
+att_enabled = true
+att_text = "המידע משמש להצגת פרסומות מותאמות אישית ולשיפור חוויית השימוש באפליקציה."
+metadata/_custom_type_script = "uid://d1qogp4bl11q5"
+
+[connection signal="BtnPressed" from="VList/BottomBar/HList/HistoryTab" to="VList/Mergin/TabManager" method="_on_history_tab_btn_pressed"]
 [connection signal="BtnPressed" from="VList/BottomBar/HList/InfoTab" to="VList/Mergin/TabManager" method="_on_info_tab_btn_pressed"]
 [connection signal="BtnPressed" from="VList/BottomBar/HList/CalcTab" to="VList/Mergin/TabManager" method="_on_calc_tab_btn_pressed"]
 [connection signal="BtnPressed" from="VList/BottomBar/HList/MainTab" to="VList/Mergin/TabManager" method="_on_main_tab_btn_pressed"]
+[connection signal="app_open_ad_loaded" from="Plugins/Admob" to="Plugins" method="_on_admob_app_open_ad_loaded"]
+[connection signal="banner_ad_loaded" from="Plugins/Admob" to="Plugins" method="_on_admob_banner_ad_loaded"]
+[connection signal="initialization_completed" from="Plugins/Admob" to="Plugins" method="_on_admob_initialization_completed"]

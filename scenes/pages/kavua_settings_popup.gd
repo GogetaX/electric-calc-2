@@ -67,7 +67,9 @@ func UpdateTotals():
 		need_to_pay = need_to_pay + (need_to_pay*GlobalCalcDb.MAAM)
 		
 		$VList/Total/TotalList/HList2/need_to_pay.text = "₪ " + str(need_to_pay).pad_decimals(2)
-	
+	else:
+		$VList/Total/TotalList/HList/days_passed.text = "0"
+		$VList/Total/TotalList/HList2/need_to_pay.text = "₪ 0.00"
 
 	
 	

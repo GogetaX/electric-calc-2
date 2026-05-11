@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dv3f170gk7jlp"]
+
+[ext_resource type="Script" uid="uid://cqse0nhiiucp1" path="res://scenes/pages/recepie_popup.gd" id="1_1m3mp"]
+[ext_resource type="PackedScene" uid="uid://cgcakdyq71pfb" path="res://scenes/components/to_pay.tscn" id="1_o2pcg"]
+
+[node name="RecepiePopup" type="Control" unique_id=313081141]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_1m3mp")
+
+[node name="ToPay" parent="." unique_id=2091667190 instance=ExtResource("1_o2pcg")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -395.0
+offset_top = 106.0
+offset_right = 395.0
+offset_bottom = 1010.0
+grow_horizontal = 2

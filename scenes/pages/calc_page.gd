@@ -8,6 +8,8 @@ func _ready() -> void:
 	GlobalSignals.AppLoaded.connect(OnAppLoaded)
 	GlobalSignals.UpdateValues.connect(OnUpdateValues)
 	GlobalSignals.UpdateHistory.connect(OnUpdateHistory)
+	if Global.has_hebrew_month == "":
+		Global.get_hebrew_month_from_api()
 	$ToPay.SetAsHidden()
 	
 func OnUpdateHistory():
@@ -21,19 +23,30 @@ func UpdateHistory():
 		$HistoryList.add_child(h)
 		h.InitItem(x)
 		
-func OnAppLoaded():
-	UpdateHistory()
-		#$HistoryList.move_child(h,0)
 	var closest_month = GlobalLoader.get_closest_last_date_item(GlobalLoader.save_data.history)
-	
+	cur_selected_last_month = closest_month
 	if !closest_month.is_empty():
-		cur_selected_last_month = closest_month.get("last_date",Time.get_date_dict_from_system())
-		$HList/OldKW.SetInput(closest_month.get("prev_kw",0))
+		if closest_month.has("last_date"):
+			cur_selected_last_month = closest_month.get("last_date",Time.get_date_dict_from_system())
+			$HList/OldKW.SetInput(closest_month.get("cur_kw",0))
+		elif closest_month.has("to_date"):
+			cur_selected_last_month = closest_month.get("to_date",Time.get_date_dict_from_system())
+			$HList/OldKW.SetInput(closest_month.get("to_kw",0))
+		else:
+			cur_selected_last_month = Time.get_date_dict_from_system()
+			$HList/OldKW.SetInput(closest_month.get("cur_kw",0))
+		
 		$HList/NewKW.SetInput(-1)
 	else:
 		cur_selected_last_month = Time.get_date_dict_from_system()
 		$HList/OldKW.SetInput(0)
 		$HList/NewKW.SetInput(-1)
+	
+		
+func OnAppLoaded():
+	UpdateHistory()
+		#$HistoryList.move_child(h,0)
+
 	match GlobalLoader.GetCurSelectedTab():
 		"HOUSE":
 			$TaarifSelector/HomeTab.SetAsSelected()
@@ -70,9 +83,10 @@ func SyncSelectedTab():
 		"CUSTOM":
 			$CustomTab.visible = true
 			var data = GlobalCalcDb.GetData(GlobalLoader.GetCurSelectedTab())
-			$CustomTab/KotashPrice.value_str = "₪"+str(data.every_kw/100.0)
+			if GlobalLoader.GetCustomPricePer100KW() == -1:
+				GlobalLoader.SetCustomPricePer100KW(data.every_kw)
+			$CustomTab/CustomKotashPrice.value_str = "₪"+str(GlobalLoader.GetCustomPricePer100KW()).pad_decimals(2)
 			$CustomTab/Kavua.value_str = "₪"+str(CalcKavua(GlobalLoader.GetCurSelectedTab())).pad_decimals(2)
-			
 		_:
 			print_debug("Unknown Tab: ",GlobalLoader.GetCurSelectedTab())
 
@@ -195,3 +209,10 @@ func GeneratePayData():
 
 	return res
 	
+
+func _on_custom_kotash_price_on_value_submited(value: Variant) -> void:
+	GlobalLoader.SetCustomPricePer100KW(float(value))
+
+
+func _on_show_history_btn_press() -> void:
+	GlobalSignals.BottomTabSelectedStr.emit("HistoryTab")

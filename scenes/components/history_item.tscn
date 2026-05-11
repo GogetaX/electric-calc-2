@@ -108,3 +108,5 @@ mouse_filter = 2
 layout_mode = 2
 icon = ExtResource("4_g8cuk")
 as_button = true
+
+[connection signal="OnPress" from="HList/VList3/PanelWithIcon" to="." method="_on_panel_with_icon_on_press"]

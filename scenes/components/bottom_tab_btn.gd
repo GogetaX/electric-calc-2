@@ -47,8 +47,18 @@ func _ready() -> void:
 		GlobalBtn.AddBtnPress(self)
 		GlobalBtn.BtnPress.connect(OnTabSelected)
 		GlobalSignals.BottomTabSelected.connect(OnBottomTabSelected)
+		GlobalSignals.BottomTabSelectedStr.connect(OnTabSelectedStr)
 	
 	
+func OnTabSelectedStr(tab_str:String):
+	if tab_str == str(name):
+		if !_is_selected:
+			BtnPressed.emit()
+			AnimateSelected()
+	else:
+		if _is_selected:
+			AnimateUnSelected()
+		
 func OnBottomTabSelected(bottom_tab:BottomTabClass):
 	if bottom_tab == self:
 		if !_is_selected:

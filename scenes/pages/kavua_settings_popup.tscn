@@ -110,7 +110,7 @@ setting_name = "2_month_base_1_phase"
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 24
-text = "רכיבי תשלום קבוע"
+text = "רכיבי תשלום קבוע (חודשיים)"
 label_color = "WHITE"
 label_size = "NORMAL_BOLD"
 
@@ -553,10 +553,8 @@ alignment = 2
 [node name="need_to_pay" parent="VList/Total/TotalList/HList2" unique_id=1019482198 instance=ExtResource("4_lo5t6")]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
-theme_override_font_sizes/font_size = 24
 text = "₪ 50"
 label_color = "PRIMARY"
-label_size = "NORMAL_BOLD"
 
 [node name="Control" type="Control" parent="VList/Total/TotalList/HList2" unique_id=1097342722]
 layout_mode = 2

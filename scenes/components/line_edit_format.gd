@@ -13,6 +13,9 @@ signal ValueSubmited(value:String)
 @export var number_min_value :int = 0
 @export var number_max_value :int = 0
 
+@export_category("FORMAT")
+@export var left_symbol = ""
+
 var _is_focused = false
 var _submited_value = ""
 
@@ -34,6 +37,11 @@ func OnParentReady():
 	_submited_value = parent_edit.text
 	
 func IsFocusEntered():
+	if left_symbol != "":
+		if parent_edit.text != "":
+			if parent_edit.text.left(left_symbol.length()) == left_symbol:
+				parent_edit.text = parent_edit.text.right(parent_edit.text.length()-left_symbol.length())
+			
 	_is_focused = true
 	
 func IsFocusExited():
@@ -42,12 +50,14 @@ func IsFocusExited():
 	var res = parent_edit.text
 	if parent_edit.text == "":
 		res = _submited_value
-	
+	else:
+		if res.left(left_symbol.length()) == left_symbol:
+			res = res.right(res.length()-left_symbol.length())
 	if text_format == "DACIMAL":
 		res = str(clampf(float(res),decimal_min_value,decimal_max_value)).pad_decimals(nums_after_dot)
 	elif text_format == "NUMBER":
 		res = str(clampi(int(res),number_min_value,number_max_value)).pad_decimals(0)
-	parent_edit.text = res
+	parent_edit.text = left_symbol + res
 	ValueSubmited.emit(res)
 	_submited_value = res
 	

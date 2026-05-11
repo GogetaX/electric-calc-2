@@ -10,14 +10,28 @@ func _ready() -> void:
 	GlobalSignals.ShowPopup.connect(OnShowPopup)
 	$ColorRect.material.set_shader_parameter("blur_amount",0.0)
 	$ColorRect.material.set_shader_parameter("mix_amount",0.0)
+	GlobalBtn.AddBtnPress($ColorRect)
+	GlobalBtn.BtnPress.connect(OnBtnPress)
+	GlobalSignals.AppLoaded.connect(OnAppLoaded)
 	visible = false
 	
 
+func OnAppLoaded():
+	if GlobalLoader.old_data_imported:
+		ShowAppUpdatePopup()
+
+func OnBtnPress(btn_control:Control):
+	if btn_control != $ColorRect:
+		return
+	GlobalSignals.HideCurPopup.emit()
+	
 func OnShowPopup(popup_name:String,data:Dictionary):
 	var p = null
 	match popup_name:
 		"KAVUA_CALC":
 			p = load("res://scenes/pages/kavua_settings_popup.tscn").instantiate()
+		"DISPLAY_RECEPIE":
+			p = load("res://scenes/pages/RecepiePopup.tscn").instantiate()
 	
 	if p == null:
 		print_debug("Unknown popup: ",popup_name)
