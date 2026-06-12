@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://0ggo4uawe5ve" path="res://themes/main_theme.tres" id="1_qups4"]
 [ext_resource type="PackedScene" uid="uid://dh864icn07y43" path="res://scenes/components/custom_label.tscn" id="1_v6j3e"]
+[ext_resource type="Script" uid="uid://v5knp88upabi" path="res://scenes/components/top_screen.gd" id="3_pqx6n"]
 [ext_resource type="Texture2D" uid="uid://ffrue0eacuat" path="res://assets/icons/info_icon.png" id="3_vei3g"]
 [ext_resource type="Script" uid="uid://dmw5c1nhgwhdb" path="res://scenes/pages/bottom_bar.gd" id="6_wa8lu"]
 [ext_resource type="Script" uid="uid://43w8amjf2qpk" path="res://scenes/pages/TabManager.gd" id="7_71cb8"]
@@ -85,6 +86,7 @@ mouse_filter = 2
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 mouse_filter = 2
+script = ExtResource("3_pqx6n")
 
 [node name="BG" type="Panel" parent="VList/TopScreen" unique_id=92600943]
 layout_mode = 1
@@ -115,7 +117,10 @@ mouse_filter = 2
 
 [node name="custom_label" parent="VList/TopScreen/HList" unique_id=779062733 instance=ExtResource("1_v6j3e")]
 layout_mode = 2
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.0627451, 0.7254902, 0.5058824, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
 label_color = "PRIMARY"
 
 [node name="Control" type="Control" parent="VList/TopScreen/HList" unique_id=626498170]
@@ -267,7 +272,7 @@ metadata/_custom_type_script = "uid://d1qogp4bl11q5"
 [node name="ScreenshotMaker" parent="Plugins" unique_id=2120175243 instance=ExtResource("18_46rqb")]
 visible = false
 mouse_filter = 2
-screenshot_type = "ANDROID_PHONE_PORTRAIT"
+screenshot_type = "iPhone_6.5_PORTRAIT"
 
 [connection signal="resized" from="VList/BottomBar/HList" to="VList/BottomBar" method="_on_h_list_resized"]
 [connection signal="BtnPressed" from="VList/BottomBar/HList/HistoryTab" to="VList/Mergin/TabManager" method="_on_history_tab_btn_pressed"]
@@ -277,3 +282,5 @@ screenshot_type = "ANDROID_PHONE_PORTRAIT"
 [connection signal="app_open_ad_loaded" from="Plugins/Admob" to="Plugins" method="_on_admob_app_open_ad_loaded"]
 [connection signal="banner_ad_loaded" from="Plugins/Admob" to="Plugins" method="_on_admob_banner_ad_loaded"]
 [connection signal="initialization_completed" from="Plugins/Admob" to="Plugins" method="_on_admob_initialization_completed"]
+[connection signal="tracking_authorization_denied" from="Plugins/Admob" to="Plugins" method="_on_admob_tracking_authorization_denied"]
+[connection signal="tracking_authorization_granted" from="Plugins/Admob" to="Plugins" method="_on_admob_tracking_authorization_granted"]

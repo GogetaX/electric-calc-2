@@ -154,11 +154,11 @@ func get_hebrew_month_from_api():
 	add_child(http)
 	
 	http.request_completed.connect(func(_result, _response_code, _headers, body):
-		
-		var json = JSON.parse_string(body.get_string_from_utf8())
-		if json && json.has("hebrew"):
-			Global.has_hebrew_month = json.hebrew
-			GlobalSignals.UpdateHebrewMonth.emit()
+		if _response_code == 200:
+			var json = JSON.parse_string(body.get_string_from_utf8())
+			if json && json.has("hebrew"):
+				Global.has_hebrew_month = json.hebrew
+				GlobalSignals.UpdateHebrewMonth.emit()
 	)
 
 	http.request(url)

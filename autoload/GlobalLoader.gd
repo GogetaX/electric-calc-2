@@ -129,6 +129,7 @@ func SyncSave():
 	f.close()
 
 func get_closest_last_date_item(items: Array) -> Dictionary:
+	print(items)
 	if save_data.history.is_empty():
 		return Time.get_date_dict_from_system()
 	
@@ -170,7 +171,7 @@ func get_closest_last_date_item(items: Array) -> Dictionary:
 			if diff < closest_diff:
 				closest_diff = diff
 				closest_item = item
-
+	
 	return closest_item
 
 func SetCustomPricePer100KW(price:float):
