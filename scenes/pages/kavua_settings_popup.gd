@@ -33,7 +33,7 @@ func InitData(data):
 			SetSelectedDevisionTab(default_settings.division_data)
 		"CUSTOM":
 			$VList/HBoxContainer2/customer_type.text = "מותאם אישית"
-			var custom_settings = GlobalLoader.save_data.default_settings
+			var custom_settings = GlobalLoader.save_data.custom_settings
 			$VList/Percentage/HList/percent_div_value.text = str(custom_settings.division_data.PERCENT_VALUE).pad_decimals(0)
 			$VList/KavuaPrice/HList/custom_div_value.text = str(custom_settings.division_data.CUSTOM_PRICE).pad_decimals(2)
 			$VList/PartPrice/HList/part_div_value.text = str(custom_settings.division_data.PART_DIV_VALUE).pad_decimals(0)
@@ -195,7 +195,6 @@ func _on_part_price_value_submited(_value: String) -> void:
 
 func _on_calc_btn_2_on_press() -> void:
 
-	
 	match cur_data.type:
 		"HOUSE":
 			GlobalLoader.save_data.house_settings.division_data.type = settings_before_save.division_type

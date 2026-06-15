@@ -37,7 +37,7 @@ func _ready() -> void:
 		"capacity":5.19, #בש"ח ל- KVA בשנה
 		"last_updated_date":{"year":2026,"month":1,"day":1} #התעריפים בתוקף
 		})
-	custom_pay_data = home_pay_data.duplicate()
+	custom_pay_data = home_pay_data.duplicate(true)
 	
 func GetData(tab_btn:String)->Dictionary:
 	match tab_btn:

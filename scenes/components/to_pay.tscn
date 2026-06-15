@@ -135,6 +135,11 @@ layout_mode = 2
 title = "לקוח"
 value_str = "ביתי"
 
+[node name="custom_price" parent="VList/Info" unique_id=2133681490 instance=ExtResource("3_gwwbf")]
+layout_mode = 2
+title = "מותאם - מחיר ל-100 לוט\"ש"
+value_str = "ביתי"
+
 [node name="haspaka_type" parent="VList/Info" unique_id=1000265695 instance=ExtResource("3_gwwbf")]
 layout_mode = 2
 title = "הספקה"

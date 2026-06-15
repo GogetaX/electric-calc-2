@@ -170,6 +170,20 @@ func _on_calc_btn_on_press() -> void:
 	$ToPay.AnimateShow()
 	$ToPay.InitData(pay_data)
 
+func GetEffectiveEveryKw(selected_tab: String, electric_data: Dictionary) -> float:
+	var every_kw := float(electric_data.get("every_kw", 0.0))
+
+	if selected_tab == "CUSTOM":
+		var custom_price := float(GlobalLoader.GetCustomPricePer100KW())
+
+		if custom_price < 0.0:
+			custom_price = every_kw
+			GlobalLoader.SetCustomPricePer100KW(custom_price)
+
+		every_kw = custom_price
+
+	return every_kw
+	
 func GeneratePayData():
 	var res = {}
 	#calc KW
@@ -177,11 +191,13 @@ func GeneratePayData():
 	var new_value = $HList/NewKW.GetValue()
 	var tot_kw = abs(new_value - old_value)
 	var selected_tab = GlobalLoader.GetCurSelectedTab()
-	var electric_data = GlobalCalcDb.GetData(selected_tab)
+	var electric_data = GlobalCalcDb.GetData(selected_tab).duplicate(true)
 	var saved_settings = GlobalLoader.GetSettings(selected_tab)
 	
+	var every_kw := GetEffectiveEveryKw(selected_tab, electric_data)
+	electric_data["every_kw"] = every_kw
 	#Output recepie
-	var pay_for_kw = (tot_kw * electric_data.every_kw)/100.0
+	var pay_for_kw = (tot_kw * every_kw) / 100.0
 	var pay_for_kw_with_maam = pay_for_kw + (pay_for_kw * GlobalCalcDb.MAAM)
 	var with_maam = saved_settings.with_maam
 	var kavua = CalcKavua(selected_tab)
@@ -201,6 +217,8 @@ func GeneratePayData():
 	res["kavua_with_maam"] = kavua + (kavua * GlobalCalcDb.MAAM)
 	res["days_passed"] = days_passed
 	res["category"] = selected_tab
+	res["custom_price_per_100_kw"] = every_kw
+	res["custom_price_per_100_kw_with_maam"] = every_kw + (every_kw*GlobalCalcDb.MAAM)
 	res["electric_data"] = electric_data.duplicate(true)
 	
 	if with_maam:

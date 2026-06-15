@@ -72,18 +72,28 @@ func InitOldData():
 func InitNewData():
 	if cur_data.is_empty():
 		return
-	
+	if cur_data.category == "CUSTOM":
+		$VList/Info/custom_price.visible = true
 	$VList/Recipe/kw_tot.value_str =  str(cur_data.tot_kw)+' קוט״ש'
-	
 	if $VList/Recipe/maam/WithTax.button_pressed:
 		$VList/Recipe/pay_kw.value_str = "₪" + str(cur_data.pay_for_kw_with_maam).pad_decimals(2)
 		$VList/Recipe/pay_kavua.value_str = "₪" + str(cur_data.kavua_with_maam).pad_decimals(2)
 		$VList/tot_pay.text = "₪" + str(cur_data.tot_pay).pad_decimals(2)
+		if cur_data.has("custom_price_per_100_kw_with_maam"):
+			$VList/Info/custom_price.value_str = "₪" + str(cur_data.custom_price_per_100_kw_with_maam).pad_decimals(2)
+		elif cur_data.has("custom_price_per_100_kw"):
+			$VList/Info/custom_price.value_str = "₪" + str(cur_data.custom_price_per_100_kw+(cur_data.custom_price_per_100_kw*GlobalCalcDb.MAAM)).pad_decimals(2)
+		else:
+			$VList/Info/custom_price.visible = false
 		#$VList/Recipe/maam.value_str = "כולל"
 	else:
 		$VList/tot_pay.text = "₪" + str(cur_data.pay_for_kw+cur_data.kavua).pad_decimals(2)
 		$VList/Recipe/pay_kw.value_str = "₪" + str(cur_data.pay_for_kw).pad_decimals(2)
 		$VList/Recipe/pay_kavua.value_str = "₪" + str(cur_data.kavua).pad_decimals(2)
+		if cur_data.has("custom_price_per_100_kw"):
+			$VList/Info/custom_price.value_str = "₪" + str(cur_data.custom_price_per_100_kw).pad_decimals(2)
+		else:
+			$VList/Info/custom_price.visible = false
 		#$VList/Recipe/maam.value_str = "ללא"
 	$VList/Recipe/days_passed.value_str = str(cur_data.days_passed).pad_decimals(0)
 	$VList/Info/from_to_dates.value_str = Global.date_dict_to_string(cur_data.from_date)+" → "+Global.date_dict_to_string(cur_data.to_date)
@@ -91,6 +101,8 @@ func InitNewData():
 	$VList/Info/haluka_type.value_str = Global.DivitionToStr(cur_data.division_data)
 	$VList/Info/haspaka_type.value_str = Global.KavuaTypeToStr(cur_data.phase_type)
 	$VList/Info/customer_type.value_str = Global.CategoryToStr(cur_data.category)
+	
+		
 	$VList/VBox/ExpandRetract.visible = true
 	_on_v_list_resized()
 	size.y = custom_minimum_size.y
