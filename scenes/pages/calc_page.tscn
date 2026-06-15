@@ -174,7 +174,7 @@ with_selector = true
 [node name="CustomKotashPrice" parent="CustomTab" unique_id=1788342350 instance=ExtResource("7_1i3ub")]
 layout_mode = 2
 label_color = "WHITE"
-title = "מחיר 100 לקוט״ש"
+title = "מחיר ל-100 לקוט״ש כולל מע\"מ"
 value_str = "₪64.32"
 is_edit = true
 

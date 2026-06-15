@@ -117,8 +117,8 @@ func CalcKavua(data_type:String):
 		"division_custom_price":data_to_work_with.division_data.CUSTOM_PRICE,
 		"division_part_price":data_to_work_with.division_data.PART_DIV_VALUE,
 		"division_type":data_to_work_with.division_data.type}
-		
 		need_to_pay = GlobalCalcDb.CalculateDevition(data_to_work_with.division_data.type,data_type,need_to_pay,cur_selected_last_month,Time.get_date_dict_from_system(),settings_before_save)
+		
 		#Maam:
 		if data_to_work_with.with_maam:
 			need_to_pay = need_to_pay + (need_to_pay*GlobalCalcDb.MAAM)
@@ -202,14 +202,13 @@ func GeneratePayData():
 	res["days_passed"] = days_passed
 	res["category"] = selected_tab
 	res["electric_data"] = electric_data.duplicate(true)
+	
 	if with_maam:
 		res["tot_pay"] = res["pay_for_kw_with_maam"] + res["kavua_with_maam"]
 	else:
 		res["tot_pay"] = res["pay_for_kw"] + res["kavua"]
-
-	return res
 	
-
+	return res
 func _on_custom_kotash_price_on_value_submited(value: Variant) -> void:
 	GlobalLoader.SetCustomPricePer100KW(float(value))
 

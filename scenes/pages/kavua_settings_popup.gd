@@ -52,8 +52,7 @@ func UpdateTotals():
 	settings_before_save["division_part_price"] = $VList/PartPrice/HList/part_div_value.text
 	
 	if !last_date_data.is_empty():
-		var last_date = last_date_data.get("last_date",Time.get_date_dict_from_system())
-		print(last_date)
+		var last_date = last_date_data.get("last_date",last_date_data.get("to_date",Time.get_date_dict_from_system()))
 		var days_passed = Global.GetDaysPassed(last_date,Time.get_date_dict_from_system())
 		$VList/Total/TotalList/HList/days_passed.text = str(days_passed).pad_decimals(0)
 		var pay_per_month = CalcPayPerMonth()
